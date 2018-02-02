@@ -15,7 +15,7 @@
 #define MAP_Y 6
 #define SCALING_X 124
 #define SCALING_Y 124
-#define SCALING_Z 20
+#define SCALING_Z 14
 
 void close_window(sfRenderWindow *window)
 {
@@ -27,11 +27,26 @@ void close_window(sfRenderWindow *window)
 sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2)
 {
 	sfVertexArray *vertex_array = sfVertexArray_create();
-	sfVertex vertex1 = {.position = *point1, .color = sfWhite};
-	sfVertex vertex2 = {.position = *point2, .color = sfWhite};
+	sfVertex vertex1 = {.position = *point1, .color = sfBlack};
+	sfVertex vertex2 = {.position = *point2, .color = sfBlack};
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
 	sfVertexArray_setPrimitiveType(vertex_array, sfLinesStrip);
+	return (vertex_array);
+}
+
+sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *point3, sfVector2f *point4)
+{
+	sfVertexArray *vertex_array = sfVertexArray_create();
+	sfVertex vertex1 = {.position = *point1, .color = sfRed};
+	sfVertex vertex2 = {.position = *point2, .color = sfGreen};
+	sfVertex vertex3 = {.position = *point3, .color = sfBlue};
+	sfVertex vertex4 = {.position = *point4, .color = sfYellow};
+	sfVertexArray_append(vertex_array, vertex1);
+	sfVertexArray_append(vertex_array, vertex2);
+	sfVertexArray_append(vertex_array, vertex3);
+	sfVertexArray_append(vertex_array, vertex4);
+	sfVertexArray_setPrimitiveType(vertex_array, sfQuads);
 	return (vertex_array);
 }
 
@@ -42,11 +57,16 @@ int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d)
 
 	while (j < 6) {
 		while (i < 6) {
-			if (i + 1 < 6)
-				sfRenderWindow_drawVertexArray(window, create_line(&map_two_d[j][i], &map_two_d[j][i + 1]), NULL);
+			if (i + 1 < 6 && j + 1 < 6)
+				sfRenderWindow_drawVertexArray(window,
+				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), NULL);
+			/*if (i + 1 < 6)
+				sfRenderWindow_drawVertexArray(window,
+				create_line(&map_two_d[j][i], &map_two_d[j][i + 1]), NULL);
 			if (j + 1 < 6)
-				sfRenderWindow_drawVertexArray(window, create_line(&map_two_d[j][i], &map_two_d[j + 1][i]), NULL);
-			i++;
+				sfRenderWindow_drawVertexArray(window,
+				create_line(&map_two_d[j][i], &map_two_d[j + 1][i]), NULL);*/
+				i++;
 		}
 		i = 0;
 		j++;
@@ -104,10 +124,9 @@ int main(void)
 		i = 0;
 		j++;
 	}
-	map[2][3] = 2;
-	map[2][4] = 5;
-
-
+	map[2][3] = 8;
+	map[3][2] = 1;
+	map[2][4] = 12;
 	sfVector2f **map_two_d = create_two_d_map(map);
 
 	video_mode.width = 800;

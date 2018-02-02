@@ -21,7 +21,7 @@ RM=			rm -f
 all: 			$(NAME)
 
 $(NAME): 		$(OBJ)
-			cc -o $(NAME) $(OBJ)  -lcsfml-system -lcsfml-window -lcsfml-graphics -lm -lcsfml-audio
+			cc -o $(NAME) $(OBJ)  -lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 
 clean:
 			rm -f $(OBJ)
