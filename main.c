@@ -38,10 +38,10 @@ sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2)
 sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *point3, sfVector2f *point4)
 {
 	sfVertexArray *vertex_array = sfVertexArray_create();
-	sfVertex vertex1 = {.position = *point1, .color = sfRed};
-	sfVertex vertex2 = {.position = *point2, .color = sfGreen};
-	sfVertex vertex3 = {.position = *point3, .color = sfBlue};
-	sfVertex vertex4 = {.position = *point4, .color = sfYellow};
+	sfVertex vertex1 = {.position = *point1, .color = sfWhite, .texCoords = (sfVector2f){0, 0}};
+	sfVertex vertex2 = {.position = *point2, .color = sfGreen, .texCoords = (sfVector2f){0, 100}};
+	sfVertex vertex3 = {.position = *point3, .color = sfBlack, .texCoords = (sfVector2f){100, 100}};
+	sfVertex vertex4 = {.position = *point4, .color = sfYellow, .texCoords = (sfVector2f){100, 0}};
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
 	sfVertexArray_append(vertex_array, vertex3);
@@ -50,7 +50,7 @@ sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
 	return (vertex_array);
 }
 
-int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d)
+int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, sfRenderStates earth_states)
 {
 	int j = 0;
 	int i = 0;
@@ -59,7 +59,7 @@ int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d)
 		while (i < 6) {
 			if (i + 1 < 6 && j + 1 < 6)
 				sfRenderWindow_drawVertexArray(window,
-				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), NULL);
+				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), &earth_states);
 			/*if (i + 1 < 6)
 				sfRenderWindow_drawVertexArray(window,
 				create_line(&map_two_d[j][i], &map_two_d[j][i + 1]), NULL);
@@ -114,6 +114,7 @@ int main(void)
 	int **map = malloc(sizeof(int *) * MAP_Y);
 	int i = 0;
 	int j = 0;
+	sfRenderStates earth_states;
 
 	while (j < 6) {
 		map[j] = malloc(sizeof(int) * MAP_X);
@@ -132,6 +133,12 @@ int main(void)
 	video_mode.width = 800;
 	video_mode.height = 600;
 	video_mode.bitsPerPixel = 32;
+
+	earth_states.blendMode = sfBlendNone;
+	earth_states.texture = sfTexture_createFromFile("earth.jpg", NULL);
+	earth_states.transform = sfTransform_Identity;
+	earth_states.shader = NULL;
+
 	window = sfRenderWindow_create(video_mode, "my_world", sfDefaultStyle, NULL);
 	sfRenderWindow_setFramerateLimit(window, 60);
 	while (sfRenderWindow_isOpen(window)) {
@@ -139,7 +146,7 @@ int main(void)
 			if (event.type == sfEvtClosed)
 				close_window(window);
 		}
-	draw_2d_map(window, map_two_d);
+	draw_2d_map(window, map_two_d, earth_states);
 	}
 	sfRenderWindow_destroy(window);
 	return (0);
