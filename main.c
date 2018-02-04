@@ -17,6 +17,10 @@
 #define SCALING_Y 124
 #define SCALING_Z 14
 
+typedef struct states_s {
+	sfRenderStates states;
+} states_t;
+
 void close_window(sfRenderWindow *window)
 {
 	sfRenderWindow_close(window);
@@ -39,9 +43,9 @@ sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
 {
 	sfVertexArray *vertex_array = sfVertexArray_create();
 	sfVertex vertex1 = {.position = *point1, .color = sfWhite, .texCoords = (sfVector2f){0, 0}};
-	sfVertex vertex2 = {.position = *point2, .color = sfGreen, .texCoords = (sfVector2f){0, 100}};
-	sfVertex vertex3 = {.position = *point3, .color = sfBlack, .texCoords = (sfVector2f){100, 100}};
-	sfVertex vertex4 = {.position = *point4, .color = sfYellow, .texCoords = (sfVector2f){100, 0}};
+	sfVertex vertex2 = {.position = *point2, .color = sfBlack, .texCoords = (sfVector2f){0, 100}};
+	sfVertex vertex3 = {.position = *point3, .color = sfWhite, .texCoords = (sfVector2f){100, 100}};
+	sfVertex vertex4 = {.position = *point4, .color = sfWhite, .texCoords = (sfVector2f){100, 0}};
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
 	sfVertexArray_append(vertex_array, vertex3);
@@ -50,7 +54,7 @@ sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
 	return (vertex_array);
 }
 
-int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, sfRenderStates earth_states)
+int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, states_t **states, int num_states)
 {
 	int j = 0;
 	int i = 0;
@@ -59,13 +63,13 @@ int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, sfRenderStates e
 		while (i < 6) {
 			if (i + 1 < 6 && j + 1 < 6)
 				sfRenderWindow_drawVertexArray(window,
-				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), &earth_states);
-			/*if (i + 1 < 6)
+				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), &states[num_states]->states);
+			if (i + 1 < 6)
 				sfRenderWindow_drawVertexArray(window,
 				create_line(&map_two_d[j][i], &map_two_d[j][i + 1]), NULL);
 			if (j + 1 < 6)
 				sfRenderWindow_drawVertexArray(window,
-				create_line(&map_two_d[j][i], &map_two_d[j + 1][i]), NULL);*/
+				create_line(&map_two_d[j][i], &map_two_d[j + 1][i]), NULL);
 				i++;
 		}
 		i = 0;
@@ -105,16 +109,29 @@ sfVector2f **create_two_d_map(int **map_three_d)
 	return (map_two_d);
 }
 
+states_t *create_texture(states_t *states, char *s)
+{
+	states->states.blendMode = sfBlendNone;
+	states->states.texture = sfTexture_createFromFile(s, NULL);
+	states->states.transform = sfTransform_Identity;
+	states->states.shader = NULL;
+	return(states);
+}
 
 int main(void)
 {
 	sfRenderWindow *window;
 	sfVideoMode video_mode;
 	sfEvent event;
+
+	states_t *states[3];
+	states_t earth_states;
+	states_t water_states;
+	states_t grass_states;
+	int num_states = 2;
 	int **map = malloc(sizeof(int *) * MAP_Y);
 	int i = 0;
 	int j = 0;
-	sfRenderStates earth_states;
 
 	while (j < 6) {
 		map[j] = malloc(sizeof(int) * MAP_X);
@@ -126,7 +143,7 @@ int main(void)
 		j++;
 	}
 	map[2][3] = 8;
-	map[3][2] = 1;
+	map[3][2] = -10;
 	map[2][4] = 12;
 	sfVector2f **map_two_d = create_two_d_map(map);
 
@@ -134,10 +151,9 @@ int main(void)
 	video_mode.height = 600;
 	video_mode.bitsPerPixel = 32;
 
-	earth_states.blendMode = sfBlendNone;
-	earth_states.texture = sfTexture_createFromFile("earth.jpg", NULL);
-	earth_states.transform = sfTransform_Identity;
-	earth_states.shader = NULL;
+	states[0] = create_texture(&earth_states, "earth.jpg");
+	states[1] = create_texture(&water_states, "water.jpg");
+	states[2] = create_texture(&grass_states, "grass.png");
 
 	window = sfRenderWindow_create(video_mode, "my_world", sfDefaultStyle, NULL);
 	sfRenderWindow_setFramerateLimit(window, 60);
@@ -146,7 +162,7 @@ int main(void)
 			if (event.type == sfEvtClosed)
 				close_window(window);
 		}
-	draw_2d_map(window, map_two_d, earth_states);
+	draw_2d_map(window, map_two_d, states, num_states);
 	}
 	sfRenderWindow_destroy(window);
 	return (0);
