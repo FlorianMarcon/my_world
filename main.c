@@ -31,8 +31,8 @@ void close_window(sfRenderWindow *window)
 sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2)
 {
 	sfVertexArray *vertex_array = sfVertexArray_create();
-	sfVertex vertex1 = {.position = *point1, .color = sfBlack};
-	sfVertex vertex2 = {.position = *point2, .color = sfBlack};
+	sfVertex vertex1 = {.position = *point1, .color = sfRed};
+	sfVertex vertex2 = {.position = *point2, .color = sfRed};
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
 	sfVertexArray_setPrimitiveType(vertex_array, sfLinesStrip);
@@ -42,9 +42,9 @@ sfVertexArray *create_line(sfVector2f *point1, sfVector2f *point2)
 sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *point3, sfVector2f *point4)
 {
 	sfVertexArray *vertex_array = sfVertexArray_create();
-	sfVertex vertex1 = {.position = *point1, .color = sfWhite, .texCoords = (sfVector2f){0, 0}};
-	sfVertex vertex2 = {.position = *point2, .color = sfBlack, .texCoords = (sfVector2f){0, 100}};
-	sfVertex vertex3 = {.position = *point3, .color = sfWhite, .texCoords = (sfVector2f){100, 100}};
+	sfVertex vertex1 = {.position = *point1, .color = sfBlack, .texCoords = (sfVector2f){0, 0}};
+	sfVertex vertex2 = {.position = *point2, .color = sfWhite, .texCoords = (sfVector2f){0, 100}};
+	sfVertex vertex3 = {.position = *point3, .color = sfBlack, .texCoords = (sfVector2f){100, 100}};
 	sfVertex vertex4 = {.position = *point4, .color = sfWhite, .texCoords = (sfVector2f){100, 0}};
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
@@ -54,27 +54,35 @@ sfVertexArray *create_quad(sfVector2f *point1, sfVector2f *point2, sfVector2f *p
 	return (vertex_array);
 }
 
-int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, states_t **states, int num_states)
+int draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, states_t **states, sfVector2i *shape)
 {
-	int j = 0;
-	int i = 0;
+	int color = 2;
 
-	while (j < 6) {
-		while (i < 6) {
-			if (i + 1 < 6 && j + 1 < 6)
+	for (int j = 0; j < 6; j++) {
+		for (int i = 0; i < 6; i++) {
+			if (i + 1 < 6 && j + 1 < 6) {
+				/*if (&map_two_d[j][i] < (sfVector2f *)0 || &map_two_d[j][i + 1] < (sfVector2f *)0 || &map_two_d[j + 1][i + 1] < (sfVector2f *)0 || &map_two_d[j + 1][i] < (sfVector2f *)0)
+					color = 1;
+				else if (&map_two_d[j][i] > (sfVector2f *)0 || &map_two_d[j][i + 1] > (sfVector2f *)0 || &map_two_d[j + 1][i + 1] > (sfVector2f *)0 || &map_two_d[j + 1][i] > (sfVector2f *)0)
+					color = 2;
+				else
+					color = 2;
+				sfRenderWindow_drawVertexArray(window, create_quad(&map_two_d[2][1], &map_two_d[2][2], &map_two_d[3][2], &map_two_d[3][1]), &states[1]->states);*/
 				sfRenderWindow_drawVertexArray(window,
-				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), &states[num_states]->states);
-			if (i + 1 < 6)
-				sfRenderWindow_drawVertexArray(window,
-				create_line(&map_two_d[j][i], &map_two_d[j][i + 1]), NULL);
-			if (j + 1 < 6)
-				sfRenderWindow_drawVertexArray(window,
-				create_line(&map_two_d[j][i], &map_two_d[j + 1][i]), NULL);
-				i++;
+				create_quad(&map_two_d[j][i], &map_two_d[j][i + 1], &map_two_d[j + 1][i + 1], &map_two_d[j + 1][i]), &states[color]->states);
+			}
 		}
-		i = 0;
-		j++;
 	}
+	//sfRenderWindow_drawVertexArray(window,
+	//create_quad(&map_two_d[shape->x][shape->y], &map_two_d[shape->x][shape->y + 2], &map_two_d[shape->x + 2][shape->y + 2], &map_two_d[shape->x + 2][shape->y]), NULL);
+	sfRenderWindow_drawVertexArray(window,
+	create_line(&map_two_d[shape->x][shape->y], &map_two_d[shape->x][shape->y + 1]), NULL);
+	sfRenderWindow_drawVertexArray(window,
+	create_line(&map_two_d[shape->x][shape->y + 1], &map_two_d[shape->x][shape->y + 2]), NULL);
+	sfRenderWindow_drawVertexArray(window,
+	create_line(&map_two_d[shape->x][shape->y + 1], &map_two_d[shape->x + 1][shape->y + 1]), NULL);
+	sfRenderWindow_drawVertexArray(window,
+	create_line(&map_two_d[shape->x - 1][shape->y + 1], &map_two_d[shape->x][shape->y + 1]), NULL);
 	sfRenderWindow_display(window);
 	return (0);
 }
@@ -118,6 +126,32 @@ states_t *create_texture(states_t *states, char *s)
 	return(states);
 }
 
+int **analyse_events(sfRenderWindow *window, sfEvent event, sfVector2i *shape, int **map)
+{
+	while (sfRenderWindow_pollEvent(window, &event)) {
+			if (event.type == sfEvtClosed)
+				close_window(window);
+			if (event.type == sfEvtKeyPressed) {
+				if (event.key.code == sfKeyP)
+					map[shape->x][shape->y + 1]++;
+				if (event.key.code == sfKeyM)
+					map[shape->x][shape->y + 1]--;
+				if (event.key.code == sfKeySpace)
+					map[shape->x][shape->y + 1] = 0;
+				if (event.key.code == sfKeyUp && shape->x > 1)
+					shape->x --;
+				if (event.key.code == sfKeyDown && shape->x < 4)
+					shape->x ++;
+				if (event.key.code == sfKeyLeft && shape->y > 0)
+					shape->y --;
+				if (event.key.code == sfKeyRight && shape->y < 3)
+					shape->y ++;
+				sfRenderWindow_clear(window, sfBlack);
+			}
+		}
+		return (map);
+}
+
 int main(void)
 {
 	sfRenderWindow *window;
@@ -128,10 +162,15 @@ int main(void)
 	states_t earth_states;
 	states_t water_states;
 	states_t grass_states;
-	int num_states = 2;
+
+	sfVector2f **map_two_d;
 	int **map = malloc(sizeof(int *) * MAP_Y);
 	int i = 0;
 	int j = 0;
+
+	sfVector2i shape;
+	shape.x = 1;
+	shape.y = 0;
 
 	while (j < 6) {
 		map[j] = malloc(sizeof(int) * MAP_X);
@@ -142,27 +181,24 @@ int main(void)
 		i = 0;
 		j++;
 	}
-	map[2][3] = 8;
-	map[3][2] = -10;
-	map[2][4] = 12;
-	sfVector2f **map_two_d = create_two_d_map(map);
+	//map[2][3] = 8;
+	//map[3][2] = -10;
+	//map[2][4] = 12;
 
 	video_mode.width = 800;
 	video_mode.height = 600;
 	video_mode.bitsPerPixel = 32;
 
-	states[0] = create_texture(&earth_states, "earth.jpg");
+	states[0] = create_texture(&earth_states, "dirt.png");
 	states[1] = create_texture(&water_states, "water.jpg");
 	states[2] = create_texture(&grass_states, "grass.png");
 
 	window = sfRenderWindow_create(video_mode, "my_world", sfDefaultStyle, NULL);
 	sfRenderWindow_setFramerateLimit(window, 60);
 	while (sfRenderWindow_isOpen(window)) {
-		while (sfRenderWindow_pollEvent(window, &event)) {
-			if (event.type == sfEvtClosed)
-				close_window(window);
-		}
-	draw_2d_map(window, map_two_d, states, num_states);
+		map = analyse_events(window, event, &shape, map);
+		map_two_d = create_two_d_map(map);
+		draw_2d_map(window, map_two_d, states, &shape);
 	}
 	sfRenderWindow_destroy(window);
 	return (0);
