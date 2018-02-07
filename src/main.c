@@ -2,6 +2,10 @@
 ** EPITECH PROJECT, 2018
 ** main
 ** File description:
-** .c
+** main
 */
 
+int	main()
+{
+	return (0);
+}
