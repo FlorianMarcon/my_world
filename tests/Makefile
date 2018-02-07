@@ -9,9 +9,14 @@ CC	=	gcc
 
 WAY	=	../src
 
-SRC	=	$(WAY)/tmp.c	\
+SRC	=	$(WAY)/create_matter/create_matter.c	\
+		$(WAY)/create_matrice_map/create_matrice_map.c	\
+		$(WAY)/create_two_d_map/project_iso_point.c	\
+		$(WAY)/create_two_d_map/create_two_d_map.c	\
 
-SRC_UT	=	tmp/tests_utils.c	\
+SRC_UT	=	create_matter/tests_utils.c	\
+		create_matrice_map/tests_utils.c	\
+		create_two_d_map/tests_utils.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -19,7 +24,7 @@ OBJ_UT	=	$(SRC_UT:.c=.o)
 
 CFLAGS	=	-W -Wall -Wextra -Werror -g3 -I../include --coverage
 
-LDFLAGS	=	-lcriterion -lgcov
+LDFLAGS	=	-lcriterion -lgcov -lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 
 NAME	=	units
 
@@ -33,11 +38,14 @@ all:	$(OBJ) $(OBJ_UT)
 	./$(NAME)
 
 clean:
-	make clean -C./lib/my
+	rm -f $(SRC:.c=.gcda)
+	rm -f $(SRC:.c=.gcno)
+	rm -f $(SRC_UT:.c=.gcda)
+	rm -f $(SRC_UT:.c=.gcno)
 	rm -f $(OBJ)
+	rm -f $(OBJ_UT)
 
 fclean: clean
-	make fclean -C./lib/my
 	rm -f $(NAME)
 
 re:	fclean all

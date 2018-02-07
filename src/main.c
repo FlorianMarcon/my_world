@@ -5,7 +5,12 @@
 ** main
 */
 
-int	main()
+#include "header_world.h"
+
+int	main(void)
 {
-	return (0);
+	int var = 0;
+
+	var = main_loop();
+	return (var);
 }
