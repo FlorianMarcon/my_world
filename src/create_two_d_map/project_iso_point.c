@@ -8,6 +8,16 @@
 #include "header_world.h"
 #include <math.h>
 
+/*
+sfVector2f	project_iso_point(int x, int y, int z)
+{
+	sfVector2f two_d_point;
+
+	two_d_point.x = x;
+	two_d_point.y = y - z + z;
+	return (two_d_point);
+}
+*/
 sfVector2f	project_iso_point(int x, int y, int z)
 {
 	sfVector2f two_d_point;

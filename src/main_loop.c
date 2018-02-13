@@ -14,8 +14,8 @@ surface_t	*init_window(void)
 
 	if (win == NULL)
 		return (NULL);
-	win->mode.width = 800;
-	win->mode.height = 600;
+	win->mode.width = 1600;
+	win->mode.height = 1200;
 	win->mode.bitsPerPixel = 32;
 	win->window = sfRenderWindow_create(win->mode, "SFML window",\
 						sfResize | sfClose, NULL);

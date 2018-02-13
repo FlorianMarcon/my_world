@@ -24,6 +24,8 @@ map_t	*create_matrice_map(int height, int width)
 		map->map[i] = malloc(sizeof(int) * width);
 		while (j != width) {
 			map->map[i][j] = 0;
+			if (j == 2)
+				map->map[i][j] = 3;
 			j++;
 		}
 		i++;
