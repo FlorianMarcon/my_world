@@ -7,28 +7,39 @@
 
 #include "header_world.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-map_t	*create_matrice_map(int height, int width)
+map_t	*initialisation_map(int height, int width)
 {
 	map_t *map = malloc(sizeof(*map));
-	int i = 0;
-	int j = 0;
 
 	if (map == NULL)
 		return (NULL);
 	map->height = height;
 	map->width = width;
-	map->map = malloc(sizeof(int *) * height);
-	while (i != height) {
-		j = 0;
-		map->map[i] = malloc(sizeof(int) * width);
-		while (j != width) {
-			map->map[i][j] = 0;
-			if (j == 2)
-				map->map[i][j] = 3;
-			j++;
+	map->angle_x = ANGLE_X;
+	map->angle_y = ANGLE_Y;
+	map->zoom = 1;
+	return (map);
+}
+map_t	*create_matrice_map(int height, int width)
+{
+	map_t *map = initialisation_map(height, width);
+
+	if (map == NULL)
+		return (NULL);
+	if ((map->map = malloc(sizeof(int *) * height)) == NULL) {
+		free(map);
+		return (NULL);
+	}
+	for (int i = 0; i != height; i++) {
+		if ((map->map[i] = malloc(sizeof(int *) * width)) == NULL) {
+			free(map);
+			return (NULL);
 		}
-		i++;
+		for (int j = 0; j != width; j++) {
+			map->map[i][j] = 0;
+		}
 	}
 	return (map);
 }

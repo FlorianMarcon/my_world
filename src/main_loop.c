@@ -28,7 +28,7 @@ int	display(surface_t *win, map_t *map, states_t *matter)
 {
 	sfVector2f **map_two_d;
 
-	map_two_d = create_two_d_map(map->map);
+	map_two_d = create_two_d_map(map);
 	draw_2d_map(win->window, map_two_d, map, matter);
 	return (0);
 }

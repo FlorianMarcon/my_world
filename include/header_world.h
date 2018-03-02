@@ -33,6 +33,10 @@ typedef struct map {
 	int **map;
 	int width;
 	int height;
+
+	float zoom;
+	int angle_x;
+	int angle_y;
 }map_t;
 
 typedef enum matter {
@@ -59,8 +63,8 @@ typedef struct for_create_state_s {
 
 states_t	*create_list_texture(void);
 map_t	*create_matrice_map(int height, int width);
-sfVector2f	project_iso_point(int x, int y, int z);
-sfVector2f	**create_two_d_map(int **map_three_d);
+sfVector2f	project_iso_point(int x, int y, map_t *map);
+sfVector2f	**create_two_d_map(map_t *map);
 
 // draw_2d_map
 

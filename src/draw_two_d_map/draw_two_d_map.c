@@ -5,8 +5,8 @@
 ** draw_two_d_map
 */
 
-#include "header_world.h"
 #include <stdio.h>
+#include "header_world.h"
 
 sfVertexArray *create_line(sfVector2f point1, sfVector2f point2, sfColor color)
 {
@@ -47,9 +47,7 @@ int	draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, map_t *map, stat
 		for (int i = 1; i < map->width - 1; i++) {
 				sfRenderWindow_drawVertexArray(window,create_quad(map_two_d[j][i], map_two_d[j][i + 1], map_two_d[j + 1][i + 1], map_two_d[j + 1][i]), &tex->states);
 				sfRenderWindow_drawVertexArray(window,create_line(map_two_d[j][i], map_two_d[j][i + 1], sfRed), NULL);
-				sfRenderWindow_drawVertexArray(window,create_line(map_two_d[j][i], map_two_d[j][i - 1], sfRed), NULL);
 				sfRenderWindow_drawVertexArray(window,create_line(map_two_d[j][i], map_two_d[j + 1][i], sfRed), NULL);
-				sfRenderWindow_drawVertexArray(window,create_line(map_two_d[j][i], map_two_d[j - 1][i], sfRed), NULL);
 		}
 	}
 	return (0);

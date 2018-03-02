@@ -7,7 +7,18 @@
 
 #include "header_world.h"
 #include <criterion/criterion.h>
+map_t	*initialisation_map(int height, int width);
 
+Test(initialisation_map, test1)
+{
+	map_t *map = initialisation_map(10, 10);
+
+	cr_assert_eq(map->width, 10);
+	cr_assert_eq(map->height, 10);
+	cr_assert_eq(map->angle_x, ANGLE_X);
+	cr_assert_eq(map->angle_y, ANGLE_Y);
+	cr_assert_eq(map->zoom, 1);
+}
 Test(create_matrice_map, test1)
 {
 	int size = 5;
