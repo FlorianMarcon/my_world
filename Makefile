@@ -5,28 +5,45 @@
 ## Makefile
 ##
 
-SRC=			./main.c
+CC	=	gcc
 
-OBJ=			$(SRC:.c=.o)
+WAY	=	./src
 
-CFLAGS= 		-W -Wall -Wextra -g3
+SRC	=	$(WAY)/main.c		\
+		$(WAY)/main_loop.c	\
+		$(WAY)/create_matter/create_matter.c	\
+		$(WAY)/create_matrice_map/create_matrice_map.c	\
+		$(WAY)/create_two_d_map/project_iso_point.c	\
+		$(WAY)/create_two_d_map/create_two_d_map.c	\
+		$(WAY)/draw_two_d_map/draw_two_d_map.c		\
 
-NAME=			my_world
+OBJ	=	$(SRC:.c=.o)
 
-CC=			gcc
+CFLAGS	=	-W -Wall -Wextra -Werror -g3 -I./include
 
-RM=			rm -f
+LDFLAGS	=	-lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 
+NAME	=	my_world
 
-all: 			$(NAME)
+RM	=	rm -f
 
-$(NAME): 		$(OBJ)
-			cc -o $(NAME) $(OBJ)  -lcsfml-system -lcsfml-window -lcsfml-graphics -lm
+LIB	=	-L./lib/my -lmy
+
+all:	$(OBJ)
+	make -C./lib/my
+	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LDFLAGS)
 
 clean:
-			rm -f $(OBJ)
+	make clean -C./lib/my
+	make clean -C./tests
+	rm -f $(OBJ)
 
-fclean: 		clean
-			rm -f $(NAME)
+fclean: clean
+	make fclean -C./lib/my
+	make fclean -C./tests/
+	rm -f $(NAME)
 
-re:			fclean all
+re:	fclean all
+
+tests_run:
+	make -C./tests
