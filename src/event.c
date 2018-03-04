@@ -37,6 +37,8 @@ int	event(surface_t *win, map_t *map)
 			map->transla_y -= 1;
 		if (sfKeyboard_isKeyPressed(sfKeyDown))
 			map->transla_y += 1;
+		if (sfKeyboard_isKeyPressed(sfKeyX))
+			map->open = 0;
 	}
 	return (0);
 }

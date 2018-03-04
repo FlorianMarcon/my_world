@@ -10,13 +10,11 @@ CC	=	gcc
 WAY	=	../src
 
 SRC	=	$(WAY)/create_matter/create_matter.c	\
-		$(WAY)/create_matrice_map/create_matrice_map.c	\
 		$(WAY)/create_two_d_map/project_iso_point.c	\
 		$(WAY)/create_two_d_map/create_two_d_map.c	\
+		$(WAY)/utilitaries/my_getstr.c			\
 
-SRC_UT	=	create_matter/tests_utils.c	\
-		create_matrice_map/tests_utils.c	\
-		create_two_d_map/tests_utils.c		\
+SRC_UT	=	my_getstr/tests_utils.c			\
 
 OBJ	=	$(SRC:.c=.o)
 

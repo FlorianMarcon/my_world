@@ -11,6 +11,7 @@
 
 int	mouse_event(surface_t *win, map_t *map);
 int	draw_bottom_map(sfRenderWindow *window, map_t *map, states_t *tex);
+void	save_map(map_t *map);
 
 surface_t	*init_window(void)
 {
@@ -206,7 +207,7 @@ button_t **create_buttons(game_object_t **rooms)
 	return (elem);
 }*/
 
-int	main_loop()
+int	main_loop(void)
 {
 	surface_t *win = init_window();
 	map_t *map = create_matrice_map(20, 10);
@@ -258,7 +259,10 @@ int	main_loop()
 		for (int j = 0; j < 6; j++)
 			sfRenderWindow_drawRectangleShape(win->window, elem[j]->rect, NULL);
 		sfRenderWindow_display(win->window);
+		if (map->open == 0)
+			sfRenderWindow_close(win->window);
 	}
+	save_map(map);
 	sfRenderWindow_destroy(win->window);
 	return (0);
 }

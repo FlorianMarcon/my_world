@@ -20,6 +20,7 @@
 #define ANGLE_Y 10
 
 #define BACKGROUND "picture/background.jpg"
+#define MEMORY "memory/memory"
 // structure pour la window
 
 typedef struct surface_s {
@@ -51,6 +52,8 @@ typedef struct map {
 	int transla_y;
 
 	sfSprite *background;
+
+	int open;
 }map_t;
 
 typedef enum matter {
