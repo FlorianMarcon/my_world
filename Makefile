@@ -21,6 +21,7 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/draw/draw_bottom_map.c	\
 		$(WAY)/draw/draw_background.c	\
 		$(WAY)/draw/display.c	\
+		$(WAY)/draw/draw_water.c	\
 		$(WAY)/draw/draw_left_toolbar.c	\
 		$(WAY)/key_event/mouse.c		\
 		$(WAY)/save_map/save_map.c		\
