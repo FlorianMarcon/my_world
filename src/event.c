@@ -6,6 +6,7 @@
 */
 
 #include "header_world.h"
+
 int	mouse_event(surface_t *win, map_t *map);
 
 int	event(surface_t *win, map_t *map)
