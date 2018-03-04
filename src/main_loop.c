@@ -7,6 +7,7 @@
 
 #include "header_world.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 surface_t	*init_window(void)
 {
@@ -34,7 +35,7 @@ int	display(surface_t *win, map_t *map, states_t *matter)
 int	main_loop()
 {
 	surface_t *win = init_window();
-	map_t *map = create_matrice_map(10, 10);
+	map_t *map = create_matrice_map(20, 10);
 	states_t *matter = create_list_texture();
 
 	if (win == NULL)

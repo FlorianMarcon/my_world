@@ -23,7 +23,7 @@ sfVector2f	project_iso_point(int x, int y, map_t *map)
 	point.y += cos(rota) * (y - map->y_center);
 	point.y = map->y_center  + cos(incli) * (point.y - map->y_center);
 	point.y -= sin(incli) * z;
-	point.x = point.x * SCALING_X;
-	point.y = point.y * SCALING_Y;
+	point.x = point.x * map->scaling_x;
+	point.y = point.y * map->scaling_y;
 	return (point);
 }

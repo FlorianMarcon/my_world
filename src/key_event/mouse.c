@@ -47,7 +47,6 @@ int	mouse_event(surface_t *win, map_t *map)
 {
 	sfVector2i pos = sfMouse_getPositionRenderWindow(win->window);
 
-	printf("x = %i, y = %i\n", pos.x, pos.y);
 	selection_square_mouse(&pos, map);
 	return (1);
 }
