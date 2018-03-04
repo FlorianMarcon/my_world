@@ -36,10 +36,18 @@ int	draw_bottom_map(sfRenderWindow *window, map_t *map, states_t *tex)
 
 	for (int j = 0; j < map->height - 1; j++) {
 		for (int i = 0; i < map->width - 1; i++) {
-			sfRenderWindow_drawVertexArray(window,create_quad_bottom_map(map_two_d[j][i], map_two_d[j][i + 1]), &tex[3].states);
-			sfRenderWindow_drawVertexArray(window,create_quad_bottom_map(map_two_d[j][i], map_two_d[j + 1][i]), &tex[3].states);
-			sfRenderWindow_drawVertexArray(window,create_quad_bottom_map(map_two_d[j][i + 1], map_two_d[j + 1][i + 1]), &tex[3].states);
-			sfRenderWindow_drawVertexArray(window,create_quad_bottom_map(map_two_d[j + 1][i], map_two_d[j + 1][i + 1]), &tex[3].states);
+			sfRenderWindow_drawVertexArray(window,
+			create_quad_bottom_map(map_two_d[j][i], map_two_d[j][i + 1]),
+			&tex[3].states);
+			sfRenderWindow_drawVertexArray(window,
+			create_quad_bottom_map(map_two_d[j][i], map_two_d[j + 1][i]),
+			&tex[3].states);
+			sfRenderWindow_drawVertexArray(window,
+			create_quad_bottom_map(map_two_d[j][i + 1], map_two_d[j + 1][i + 1]),
+			&tex[3].states);
+			sfRenderWindow_drawVertexArray(window,
+			create_quad_bottom_map(map_two_d[j + 1][i], map_two_d[j + 1][i + 1]),
+			&tex[3].states);
 		}
 	}
 	return (0);

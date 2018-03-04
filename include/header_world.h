@@ -36,8 +36,8 @@ typedef struct map {
 	int height;
 	int x_center;
 	int y_center;
-	int scaling_x;
-	int scaling_y;
+	float scaling_x;
+	float scaling_y;
 	sfVector2f **map_two_d;
 
 	// selectioned position
@@ -47,6 +47,8 @@ typedef struct map {
 	float zoom;
 	int rotation;
 	int inclinaison;
+	int transla_x;
+	int transla_y;
 
 	sfSprite *background;
 }map_t;
