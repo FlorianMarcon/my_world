@@ -108,6 +108,10 @@ void	rotate_u(map_t *map);
 
 void	rotate_d(map_t *map);
 
+void	up(map_t *map);
+
+void	down(map_t *map);
+
 // fonction de création
 
 typedef struct for_create_state_s {
