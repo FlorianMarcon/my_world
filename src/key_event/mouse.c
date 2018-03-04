@@ -32,6 +32,7 @@ int	selection_square_mouse(sfVector2i *pos, map_t *map)
 	while (y != map->height) {
 		x = 0;
 		while (x != map->width) {
+//			printf("x = %i, y = \n", );
 			if (is_here(pos, map_two_d, x, y) == 1) {
 				map->x = x;
 				map->y = y;
