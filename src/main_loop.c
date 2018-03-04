@@ -9,10 +9,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	main_loop(void)
+int	main_loop(int width, int height)
 {
 	surface_t *win = init_window();
-	map_t *map = create_matrice_map(20, 10);
+	map_t *map = create_matrice_map(width, height);
 	states_t *matter = create_list_texture();
 	button_t **elem = create_button();
 

@@ -12,7 +12,7 @@ int	my_is_prime(int nb)
 	int i = 2;
 	int x;
 
-	switch(nb) {
+	switch (nb) {
 		case 0 : return (0);
 		case 1 : return (0);
 		case 2 : return (1);

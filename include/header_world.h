@@ -141,7 +141,7 @@ int	draw_left_toolbar(surface_t *win, button_t **elem);
 
 // loop principale
 
-int	main_loop(void);
+int	main_loop(int width, int height);
 
 int	event(surface_t *win, map_t *map);
 
