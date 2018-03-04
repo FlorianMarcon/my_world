@@ -11,6 +11,6 @@ int	main(void)
 {
 	int var = 0;
 
-	var = main_loop(20, 20);
+	var = main_loop(100, 100);
 	return (var);
 }
