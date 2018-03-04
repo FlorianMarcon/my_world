@@ -28,6 +28,15 @@ map_t	*initialisation_map(int height, int width)
 	map->zoom = 1;
 	return (map);
 }
+
+int	create_background(map_t *map)
+{
+	sfTexture *text = sfTexture_createFromFile(BACKGROUND, NULL);
+
+	map->background = sfSprite_create();
+	sfSprite_setTexture(map->background, text, sfTrue);
+	return (1);
+}
 map_t	*create_matrice_map(int height, int width)
 {
 	map_t *map = initialisation_map(height, width);
@@ -48,5 +57,6 @@ map_t	*create_matrice_map(int height, int width)
 		}
 	}
 	create_two_d_map(map);
+	create_background(map);
 	return (map);
 }

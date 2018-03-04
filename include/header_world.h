@@ -19,6 +19,7 @@
 #define ANGLE_X 65
 #define ANGLE_Y 10
 
+#define BACKGROUND "picture/background.jpg"
 // structure pour la window
 
 typedef struct surface_s {
@@ -46,6 +47,8 @@ typedef struct map {
 	float zoom;
 	int rotation;
 	int inclinaison;
+
+	sfSprite *background;
 }map_t;
 
 typedef enum matter {
@@ -53,6 +56,7 @@ typedef enum matter {
 	water,
 	grass,
 	null,
+	bottom,
 }matter_t;
 
 //
@@ -82,6 +86,8 @@ int	draw_2d_map(sfRenderWindow *window, map_t *map, states_t *tex);
 sfVertexArray *create_quad(sfVector2f point1, sfVector2f point2,\
 					sfVector2f point3, sfVector2f point4);
 sfVertexArray *create_line(sfVector2f point1, sfVector2f point2, sfColor color);
+
+int	draw_background(map_t *map, surface_t *win);
 
 // loop principale
 
