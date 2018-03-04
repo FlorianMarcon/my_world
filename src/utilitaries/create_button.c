@@ -53,18 +53,23 @@ button_t	*buttonInitialise(sfVector2f position, sfVector2f size,
 
 button_t	**create_button(void)
 {
-	button_t **elem = malloc(sizeof(*elem) * 7);
+	button_t **elem = malloc(sizeof(*elem) * 9);
 	game_object_t *rooms;
 	sfIntRect rect = set_rectangle(0, 0, 100, 100);
 	sfVector2f pos = {10, 200};
 
-	for (short i = 0; i != 6; i++) {
-		rooms = create_object(but[i].path, (sfVector2f){-250, -300},
-									rect);
+	for (short i = 0; i != 6; i++, pos.y += 100) {
+		rooms = create_object(but[i].path, (sfVector2f){0, 0}, rect);
 		elem[i] = buttonInitialise(pos, (sfVector2f){100, 100},
 							but[i].callback, rooms);
-		pos.y += 100;
 	}
-	elem[6] = NULL;
+	pos.x = 200;
+	pos.y = 20;
+	for (short i = 6; i != 8; i++, pos.x += 100) {
+		rooms = create_object(but[i].path, (sfVector2f){0, 0}, rect);
+		elem[i] = buttonInitialise(pos, (sfVector2f){100, 100},
+							but[i].callback, rooms);
+	}
+	elem[8] = NULL;
 	return (elem);
 }

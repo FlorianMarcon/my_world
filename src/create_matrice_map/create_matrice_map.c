@@ -23,8 +23,8 @@ map_t	*initialisation_map(int height, int width)
 	map->scaling_y = 1100 / height;
 	map->x = 0;
 	map->y = 0;
-	map->rotation = 0;
-	map->inclinaison = 0;
+	map->rotation = 20;
+	map->inclinaison = 60;
 	map->zoom = 1;
 	map->open = 1;
 	map->transla_x = 1;
