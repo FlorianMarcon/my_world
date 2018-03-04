@@ -29,10 +29,9 @@ int	selection_square_mouse(sfVector2i *pos, map_t *map)
 	int x = 0;
 	sfVector2f **map_two_d = map->map_two_d;
 
-	while (y != map->height) {
+	while (y != map->height - 1) {
 		x = 0;
 		while (x != map->width) {
-//			printf("x = %i, y = \n", );
 			if (is_here(pos, map_two_d, x, y) == 1) {
 				map->x = x;
 				map->y = y;
