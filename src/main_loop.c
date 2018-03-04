@@ -157,8 +157,8 @@ int	main_loop()
 	button_t button_scene1_scne2;
 	button_t button_exitgame;
 	button_t button_pause_game;
-	button_t *elem[3];
-	int num_buttons = 3;
+	button_t *elem[6];
+	int num_buttons = 6;
 	int boolean = 0;
 	game_object_t *rooms[3];
 	sfIntRect rect_larger;

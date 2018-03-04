@@ -46,10 +46,13 @@ int	draw_2d_map(sfRenderWindow *window, map_t *map, states_t *tex)
 	int y = map->y;
 	sfVector2f **map_two_d = map->map_two_d;
 
-	for (int j = 0; j < map->height - 1; j++) {
-		for (int i = 0; i < map->width - 1; i++) {
+	for (int j = 0; j < map->height; j++) {
+		for (int i = 0; i < map->width; i++) {
+			if (i + 1 < map->width && j + 1 < map->height)
 			sfRenderWindow_drawVertexArray(window,create_quad(map_two_d[j][i], map_two_d[j][i + 1], map_two_d[j + 1][i + 1], map_two_d[j + 1][i]), &tex[2].states);
+			if (i + 1 < map->width)
 			sfRenderWindow_drawVertexArray(window,create_line(map_two_d[j][i], map_two_d[j][i + 1], sfBlack), NULL);
+			if (j + 1 < map->height)
 			sfRenderWindow_drawVertexArray(window,create_line(map_two_d[j][i], map_two_d[j + 1][i], sfBlack), NULL);
 		}
 	}
