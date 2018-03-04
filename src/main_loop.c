@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 int	draw_bottom_map(sfRenderWindow *window, map_t *map, states_t *tex);
+void	save_map(map_t *map);
 
 surface_t	*init_window(void)
 {
@@ -35,7 +36,7 @@ int	display(surface_t *win, map_t *map, states_t *matter)
 	//draw_square_selection();
 	return (0);
 }
-int	main_loop()
+int	main_loop(void)
 {
 	surface_t *win = init_window();
 	map_t *map = create_matrice_map(20, 10);
@@ -49,7 +50,10 @@ int	main_loop()
 		sfRenderWindow_clear(win->window, sfBlack);
 		display(win, map, matter);
 		sfRenderWindow_display(win->window);
+		if (map->open == 0)
+			sfRenderWindow_close(win->window);
 	}
+	save_map(map);
 	sfRenderWindow_destroy(win->window);
 	return (0);
 }

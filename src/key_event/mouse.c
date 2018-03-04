@@ -8,14 +8,15 @@
 #include <stdio.h>
 #include "header_world.h"
 
-int	is_here(sfVector2i *pos, sfVector2f **map, int x, int y)
+int	is_here(sfVector2i *pos, map_t *mapp, int x, int y)
 {
 	int a = 0;
+	sfVector2f **map = mapp->map_two_d;
 
-	if (pos->x >= map[y][x].x && pos->x <= map[y][x + 1].x) {
+	if ((pos->x >= map[y][x].x && pos->x <= map[y][x + 1].x) || (pos->x >= map[y + 1][x].x && pos->x <= map[y + 1][x + 1].x)) {
 		a++;
 	}
-	if (pos->y >= map[y][x].y && pos->y <= map[y + 1][x].y) {
+	if ((pos->y >= map[y][x].y && pos->y <= map[y + 1][x].y)) {
 		a++;
 	}
 	switch (a) {
@@ -27,12 +28,11 @@ int	selection_square_mouse(sfVector2i *pos, map_t *map)
 {
 	int y = 0;
 	int x = 0;
-	sfVector2f **map_two_d = map->map_two_d;
 
 	while (y != map->height - 1) {
 		x = 0;
 		while (x != map->width) {
-			if (is_here(pos, map_two_d, x, y) == 1) {
+			if (is_here(pos, map, x, y) == 1) {
 				map->x = x;
 				map->y = y;
 				return (1);
