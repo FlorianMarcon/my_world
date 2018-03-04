@@ -26,7 +26,8 @@ void	analyse_event(surface_t *win, button_t **elem, map_t *map)
 	while (sfRenderWindow_pollEvent(win->window, &win->event)) {
 		if (win->event.type == sfEvtClosed)
 			sfRenderWindow_close(win->window);
-		clickPosition_one = sfMouse_getPosition((const sfWindow *)win->window);
+		clickPosition_one = sfMouse_getPosition((const sfWindow *)
+								win->window);
 		clickPosition.x = clickPosition_one.x;
 		clickPosition.y = clickPosition_one.y;
 		if (win->event.type == sfEvtMouseButtonPressed) {

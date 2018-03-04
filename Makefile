@@ -30,6 +30,7 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/utilitaries/set_rectangle.c	\
 		$(WAY)/utilitaries/create_button.c	\
 		$(WAY)/button/left_toolbar.c		\
+		$(WAY)/button/button.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

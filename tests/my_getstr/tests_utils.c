@@ -21,5 +21,5 @@ Test(my_getstr, test1)
 {
 	cr_assert_str_eq(my_getstr(13), "13");
 	cr_assert_str_eq(my_getstr(-13), "-13");
-//	cr_assert_str_eq(my_getstr(0), "0");
+	cr_assert_str_eq(my_getstr(0), "0");
 }

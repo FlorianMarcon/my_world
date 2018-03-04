@@ -34,7 +34,8 @@ void	evolve_two_d_map_water(map_t *map)
 
 	while (j < map->height) {
 		while (i < map->width) {
-			map->map_two_d[j][i] = project_iso_point_water(i, j, map);
+			map->map_two_d[j][i] = project_iso_point_water
+								(i, j, map);
 			i++;
 		}
 		i = 0;
