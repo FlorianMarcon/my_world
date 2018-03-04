@@ -113,7 +113,7 @@ game_object_t	*create_object(const char *path_to_spritesheet, sfVector2f pos, sf
 }
 
 
-void	analyse_event(surface_t *win, button_t *restaurant, map_t *map)
+void	analyse_event(surface_t *win, button_t *elem, map_t *map)
 {
 	sfVector2i clickPosition_one;
 	sfVector2f clickPosition;
@@ -121,13 +121,13 @@ void	analyse_event(surface_t *win, button_t *restaurant, map_t *map)
 	while (sfRenderWindow_pollEvent(win->window, &win->event)) {
 		if (win->event.type == sfEvtClosed)
 			sfRenderWindow_close(win->window);
+		clickPosition_one = sfMouse_getPosition((const sfWindow *)win->window);
+		clickPosition.x = clickPosition_one.x;
+		clickPosition.y = clickPosition_one.y;
 		if (win->event.type == sfEvtMouseButtonPressed) {
-			clickPosition_one = sfMouse_getPosition((const sfWindow *)win->window);
-			clickPosition.x = clickPosition_one.x;
-			clickPosition.y = clickPosition_one.y;
 			for (int i = 0; i < 6; i++) {
-				if (buttonIsClicked(restaurant[i], clickPosition))
-					restaurant[i].callback(map);
+				if (buttonIsClicked(elem[i], clickPosition))
+					elem[i].callback(map);
 			}
 		}
 		//if (sfMouse_isButtonPressed(sfMouseLeft))
@@ -168,6 +168,7 @@ int	main_loop(void)
 	surface_t *win = init_window();
 	map_t *map = create_matrice_map(20, 10);
 	states_t *matter = create_list_texture();
+	sfVector2i clickPosition_one;
 	button_t *elem[6];
 	button_t button_larger;
 	button_t button_smaller;
@@ -210,8 +211,11 @@ int	main_loop(void)
 		sfRenderWindow_clear(win->window, sfBlack);
 		display(win, map, matter);
 		analyse_event(win, *elem, map);
-		for (int j = 0; j < 6; j++)
-			sfRenderWindow_drawRectangleShape(win->window, elem[j]->rect, NULL);
+		clickPosition_one = sfMouse_getPosition((const sfWindow *)win->window);
+		if (clickPosition_one.x < 100 && (clickPosition_one.y > 200 && clickPosition_one.x < 710)) {
+			for (int j = 0; j < 6; j++)
+				sfRenderWindow_drawRectangleShape(win->window, elem[j]->rect, NULL);
+		}
 		sfRenderWindow_display(win->window);
 		if (map->open == 0)
 			sfRenderWindow_close(win->window);
