@@ -26,6 +26,8 @@ map_t	*initialisation_map(int height, int width)
 	map->rotation = 0;
 	map->inclinaison = 0;
 	map->zoom = 1;
+	map->transla_x = 1;
+	map->transla_y = 1;
 	return (map);
 }
 
