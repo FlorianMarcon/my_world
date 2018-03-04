@@ -20,13 +20,19 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/draw/draw_square_selection.c	\
 		$(WAY)/draw/draw_bottom_map.c	\
 		$(WAY)/draw/draw_background.c	\
+		$(WAY)/draw/display.c	\
+		$(WAY)/draw/draw_left_toolbar.c	\
 		$(WAY)/key_event/mouse.c		\
 		$(WAY)/save_map/save_map.c		\
 		$(WAY)/utilitaries/my_getstr.c		\
+		$(WAY)/utilitaries/init_window.c		\
+		$(WAY)/utilitaries/set_rectangle.c	\
+		$(WAY)/utilitaries/create_button.c	\
+		$(WAY)/button/left_toolbar.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-W -Wall -Wextra -g3 -I./include
+CFLAGS	=	-W -Wall -Wextra -Werror -g3 -I./include
 
 LDFLAGS	=	-lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 
@@ -41,16 +47,16 @@ all:	$(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LDFLAGS)
 
 clean:
-	make clean -C./lib/my
 	make clean -C./tests
+	make clean -C./lib/my
 	rm -f $(OBJ)
 
 fclean: clean
+	make fclean -C./tests
 	make fclean -C./lib/my
-	make fclean -C./tests/
 	rm -f $(NAME)
 
-re:	fclean all
+re:	clean all
 
 tests_run:
 	make -C./tests
