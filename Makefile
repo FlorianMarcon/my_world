@@ -11,11 +11,14 @@ WAY	=	./src
 
 SRC	=	$(WAY)/main.c		\
 		$(WAY)/main_loop.c	\
+		$(WAY)/event.c		\
 		$(WAY)/create_matter/create_matter.c	\
 		$(WAY)/create_matrice_map/create_matrice_map.c	\
 		$(WAY)/create_two_d_map/project_iso_point.c	\
 		$(WAY)/create_two_d_map/create_two_d_map.c	\
-		$(WAY)/draw_two_d_map/draw_two_d_map.c		\
+		$(WAY)/draw/draw_two_d_map.c		\
+		$(WAY)/draw/draw_square_selection.c	\
+		$(WAY)/key_event/mouse.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

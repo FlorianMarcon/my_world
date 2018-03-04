@@ -15,10 +15,14 @@ map_t	*initialisation_map(int height, int width)
 
 	if (map == NULL)
 		return (NULL);
-	map->height = height;
 	map->width = width;
-	map->angle_x = ANGLE_X;
-	map->angle_y = ANGLE_Y;
+	map->height = height;
+	map->x_center = width / 2;
+	map->y_center = height / 2;
+	map->x = 0;
+	map->y = 0;
+	map->rotation = 0;
+	map->inclinaison = 0;
 	map->zoom = 1;
 	return (map);
 }
@@ -41,5 +45,6 @@ map_t	*create_matrice_map(int height, int width)
 			map->map[i][j] = 0;
 		}
 	}
+	create_two_d_map(map);
 	return (map);
 }

@@ -33,10 +33,19 @@ typedef struct map {
 	int **map;
 	int width;
 	int height;
+	int x_center;
+	int y_center;
+	int scaling_x;
+	int scaling_y;
+	sfVector2f **map_two_d;
+
+	// selectioned position
+	int x;
+	int y;
 
 	float zoom;
-	int angle_x;
-	int angle_y;
+	int rotation;
+	int inclinaison;
 }map_t;
 
 typedef enum matter {
@@ -64,11 +73,12 @@ typedef struct for_create_state_s {
 states_t	*create_list_texture(void);
 map_t	*create_matrice_map(int height, int width);
 sfVector2f	project_iso_point(int x, int y, map_t *map);
-sfVector2f	**create_two_d_map(map_t *map);
+void	create_two_d_map(map_t *map);
+void	evolve_two_d_map(map_t *map);
 
 // draw_2d_map
 
-int	draw_2d_map(sfRenderWindow *window, sfVector2f **map_two_d, map_t *map, states_t *tex);
+int	draw_2d_map(sfRenderWindow *window, map_t *map, states_t *tex);
 sfVertexArray *create_quad(sfVector2f point1, sfVector2f point2,\
 					sfVector2f point3, sfVector2f point4);
 sfVertexArray *create_line(sfVector2f point1, sfVector2f point2, sfColor color);
@@ -76,5 +86,7 @@ sfVertexArray *create_line(sfVector2f point1, sfVector2f point2, sfColor color);
 // loop principale
 
 int	main_loop(void);
+
+int	event(surface_t *win, map_t *map);
 
 #endif

@@ -26,10 +26,9 @@ surface_t	*init_window(void)
 
 int	display(surface_t *win, map_t *map, states_t *matter)
 {
-	sfVector2f **map_two_d;
-
-	map_two_d = create_two_d_map(map);
-	draw_2d_map(win->window, map_two_d, map, matter);
+	evolve_two_d_map(map);
+	draw_2d_map(win->window, map, matter);
+	//draw_square_selection();
 	return (0);
 }
 int	main_loop()
@@ -42,10 +41,7 @@ int	main_loop()
 		return (84);
 	sfRenderWindow_setFramerateLimit(win->window, 60);
 	while (sfRenderWindow_isOpen(win->window)) {
-		while (sfRenderWindow_pollEvent(win->window, &win->event)) {
-			if (win->event.type == sfEvtClosed)
-				sfRenderWindow_close(win->window);
-		}
+		event(win, map);
 		sfRenderWindow_clear(win->window, sfBlack);
 		display(win, map, matter);
 		sfRenderWindow_display(win->window);
