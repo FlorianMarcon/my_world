@@ -51,6 +51,7 @@ typedef struct map {
 	int transla_x;
 	int transla_y;
 
+	int selec;
 	sfSprite *background;
 
 	int open;
