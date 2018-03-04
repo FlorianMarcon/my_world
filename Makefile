@@ -18,6 +18,8 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/create_two_d_map/create_two_d_map.c	\
 		$(WAY)/draw/draw_two_d_map.c		\
 		$(WAY)/draw/draw_square_selection.c	\
+		$(WAY)/draw/draw_bottom_map.c	\
+		$(WAY)/draw/draw_background.c	\
 		$(WAY)/key_event/mouse.c		\
 
 OBJ	=	$(SRC:.c=.o)
