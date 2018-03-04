@@ -42,8 +42,9 @@ sfVertexArray *create_quad(sfVector2f point1, sfVector2f point2,\
 
 int	draw_2d_map(sfRenderWindow *window, map_t *map, states_t *tex)
 {
-	sfVector2f **map_two_d = map->map_two_d;
+	sfVector2f **map_two_d;
 
+	map_two_d = map->map_two_d;
 	for (int j = 0; j < map->height - 1; j++) {
 		for (int i = 0; i < map->width - 1; i++) {
 			sfRenderWindow_drawVertexArray(window,

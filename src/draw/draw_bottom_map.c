@@ -32,8 +32,10 @@ sfVertexArray *create_quad_bottom_map(sfVector2f point1, sfVector2f point2)
 
 int	draw_bottom_map(sfRenderWindow *window, map_t *map, states_t *tex)
 {
-	sfVector2f **map_two_d = map->map_two_d;
+	sfVector2f **map_two_d;
 
+	evolve_two_d_map(map);
+	map_two_d = map->map_two_d;
 	for (int j = 0; j < map->height - 1; j++) {
 		for (int i = 0; i < map->width - 1; i++) {
 			if (j == 0 || j == map->height - 2 || i == 0 ||
