@@ -8,13 +8,15 @@
 #include "header_world.h"
 #include <stdlib.h>
 
-const init_t but[7] = {
+const init_t but[9] = {
 	{"./picture/larger.png", larger},
 	{"./picture/smaller.png", smaller},
-	{"./picture/return.png", rotate_l},
-	{"./picture/return.png", rotate_r},
-	{"./picture/return.png", rotate_u},
-	{"./picture/return.png", rotate_d},
+	{"./picture/rotate_r.png", rotate_l},
+	{"./picture/rotate_l.png", rotate_r},
+	{"./picture/incli_up.png", rotate_u},
+	{"./picture/incli_down.png", rotate_d},
+	{"./picture/up.png", up},
+	{"./picture/down.png", down},
 	{NULL, larger}
 };
 
