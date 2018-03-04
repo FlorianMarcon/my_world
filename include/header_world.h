@@ -56,6 +56,7 @@ typedef enum matter {
 	water,
 	grass,
 	null,
+	bottom,
 }matter_t;
 
 //
