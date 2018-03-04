@@ -26,7 +26,7 @@ SRC	=	$(WAY)/main.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-W -Wall -Wextra -Werror -g3 -I./include
+CFLAGS	=	-W -Wall -Wextra -g3 -I./include
 
 LDFLAGS	=	-lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 

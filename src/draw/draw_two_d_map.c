@@ -32,7 +32,6 @@ sfVertexArray *create_quad(sfVector2f point1, sfVector2f point2,\
 					.texCoords = (sfVector2f){100, 100}};
 	sfVertex vertex4 = {.position = point4, .color = sfWhite,\
 					.texCoords = (sfVector2f){100, 0}};
-
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
 	sfVertexArray_append(vertex_array, vertex3);

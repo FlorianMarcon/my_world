@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT, 2017
+** EPITECH PROJECT, 2018
 ** event
 ** File description:
 ** event
@@ -7,6 +7,7 @@
 
 #include "header_world.h"
 #include <stdio.h>
+
 int	mouse_event(surface_t *win, map_t *map);
 
 int	event(surface_t *win, map_t *map)
