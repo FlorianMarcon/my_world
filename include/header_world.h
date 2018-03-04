@@ -113,6 +113,9 @@ void	up(map_t *map);
 
 void	down(map_t *map);
 
+void	erase(map_t *map);
+
+
 // fonction de création
 
 typedef struct for_create_state_s {

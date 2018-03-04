@@ -13,7 +13,8 @@ int	is_here(sfVector2i *pos, map_t *mapp, int x, int y)
 	int a = 0;
 	sfVector2f **map = mapp->map_two_d;
 
-	if ((pos->x >= map[y][x].x && pos->x <= map[y][x + 1].x) || (pos->x >= map[y + 1][x].x && pos->x <= map[y + 1][x + 1].x)) {
+	if ((pos->x >= map[y][x].x && pos->x <= map[y][x + 1].x)
+	|| (pos->x >= map[y + 1][x].x && pos->x <= map[y + 1][x + 1].x)) {
 		a++;
 	}
 	if ((pos->y >= map[y][x].y && pos->y <= map[y + 1][x].y)) {

@@ -18,7 +18,7 @@ int	draw_left_toolbar(surface_t *win, button_t **elem)
 			sfRenderWindow_drawRectangleShape
 					(win->window, elem[j]->rect, NULL);
 		}
-	for (int j = 6; j < 8; j++)
+	for (int j = 6; j < 9; j++)
 		sfRenderWindow_drawRectangleShape
 				(win->window, elem[j]->rect, NULL);
 	return (1);

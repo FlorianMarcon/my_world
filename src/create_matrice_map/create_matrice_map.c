@@ -21,14 +21,14 @@ map_t	*initialisation_map(int height, int width)
 	map->y_center = height / 2;
 	map->scaling_x = 1100 / width;
 	map->scaling_y = 1100 / height;
-	map->x = 0;
+	map->x = 600;
 	map->y = 0;
 	map->rotation = 20;
 	map->inclinaison = 60;
 	map->zoom = 1;
 	map->open = 1;
 	map->selec = 1;
-	map->transla_x = 1;
+	map->transla_x = 10;
 	map->transla_y = 1;
 	return (map);
 }

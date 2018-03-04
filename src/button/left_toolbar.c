@@ -15,7 +15,7 @@ void	rotate_d(map_t *map)
 
 void	down(map_t *map)
 {
-	if (map->map[map->y][map->x] > -2) {
+	if (map->map[map->y][map->x] > -1) {
 		map->map[map->y][map->x]--;
 		map->map[map->y][map->x + 1]--;
 		map->map[map->y + 1][map->x + 1]--;
@@ -30,4 +30,12 @@ void	up(map_t *map)
 		map->map[map->y + 1][map->x + 1]++;
 		map->map[map->y + 1][map->x]++;
 	}
+}
+
+void	erase(map_t *map)
+{
+		map->map[map->y][map->x] = 0;
+		map->map[map->y][map->x + 1] = 0;
+		map->map[map->y + 1][map->x + 1] = 0;
+		map->map[map->y + 1][map->x] = 0;
 }
