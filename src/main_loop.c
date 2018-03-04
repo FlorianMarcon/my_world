@@ -7,6 +7,7 @@
 
 #include "header_world.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 surface_t	*init_window(void)
 {
@@ -147,7 +148,7 @@ sfIntRect	set_rectangle(sfIntRect rect, int top, int left, int width, int height
 int	main_loop()
 {
 	surface_t *win = init_window();
-	map_t *map = create_matrice_map(10, 10);
+	map_t *map = create_matrice_map(20, 10);
 	states_t *matter = create_list_texture();
 	sfEvent event2;
 	button_t button_scene1_scne2;

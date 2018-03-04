@@ -19,6 +19,8 @@ map_t	*initialisation_map(int height, int width)
 	map->height = height;
 	map->x_center = width / 2;
 	map->y_center = height / 2;
+	map->scaling_x = 1100 / width;
+	map->scaling_y = 1100 / height;
 	map->x = 0;
 	map->y = 0;
 	map->rotation = 0;
