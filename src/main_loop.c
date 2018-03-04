@@ -8,6 +8,7 @@
 #include "header_world.h"
 #include <stdlib.h>
 #include <stdio.h>
+int	draw_bottom_map(sfRenderWindow *window, map_t *map, states_t *tex);
 
 surface_t	*init_window(void)
 {
@@ -28,6 +29,8 @@ surface_t	*init_window(void)
 int	display(surface_t *win, map_t *map, states_t *matter)
 {
 	evolve_two_d_map(map);
+	draw_background(map, win);
+	//draw_bottom_map(win->window, map, matter);
 	draw_2d_map(win->window, map, matter);
 	//draw_square_selection();
 	return (0);
