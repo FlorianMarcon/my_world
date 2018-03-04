@@ -30,7 +30,7 @@ void	analyse_event(surface_t *win, button_t **elem, map_t *map)
 		clickPosition.x = clickPosition_one.x;
 		clickPosition.y = clickPosition_one.y;
 		if (win->event.type == sfEvtMouseButtonPressed) {
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < 8; i++) {
 				if (buttonIsClicked(elem[i], clickPosition)) {
 					elem[i]->callback(map);
 				}
