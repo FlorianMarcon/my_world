@@ -8,6 +8,8 @@
 #include "header_world.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+int	mouse_event(surface_t *win, map_t *map);
 int	draw_bottom_map(sfRenderWindow *window, map_t *map, states_t *tex);
 
 surface_t	*init_window(void)
@@ -110,23 +112,33 @@ game_object_t	*create_object(const char *path_to_spritesheet, sfVector2f pos, sf
 }
 
 
-void	analyse_event(sfRenderWindow *window, sfEvent event2, button_t *restaurant, int num_rep, map_t *map)
+void	analyse_event(surface_t *win, button_t *restaurant, map_t *map)
 {
 	sfVector2i clickPosition_one;
 	sfVector2f clickPosition;
 
-	while (sfRenderWindow_pollEvent(window, &event2)) {
-		if (event2.type == sfEvtClosed)
-			sfRenderWindow_close(window);
-		if (event2.type == sfEvtMouseButtonPressed) {
-			clickPosition_one = sfMouse_getPosition((const sfWindow *)window);
+	while (sfRenderWindow_pollEvent(win->window, &win->event)) {
+		if (win->event.type == sfEvtClosed)
+			sfRenderWindow_close(win->window);
+		if (win->event.type == sfEvtMouseButtonPressed) {
+			clickPosition_one = sfMouse_getPosition((const sfWindow *)win->window);
 			clickPosition.x = clickPosition_one.x;
 			clickPosition.y = clickPosition_one.y;
-			for (int i = 0; i < num_rep; i++) {
+			for (int i = 0; i < 6; i++) {
 				if (buttonIsClicked(restaurant[i], clickPosition))
 					restaurant[i].callback(map);
 			}
 		}
+		//if (sfMouse_isButtonPressed(sfMouseLeft))
+			mouse_event(win, map);
+		if (sfKeyboard_isKeyPressed(sfKeyRight))
+			map->transla_x += 1;
+		if (sfKeyboard_isKeyPressed(sfKeyLeft))
+			map->transla_x -= 1;
+		if (sfKeyboard_isKeyPressed(sfKeyUp))
+			map->transla_y -= 1;
+		if (sfKeyboard_isKeyPressed(sfKeyDown))
+			map->transla_y += 1;
 	}
 }
 
@@ -150,20 +162,62 @@ sfIntRect	set_rectangle(sfIntRect rect, int top, int left, int width, int height
 	return (rect);
 }
 
-int	main_loop()
+/*game_object_t **create_game_object()
 {
-	surface_t *win = init_window();
-	map_t *map = create_matrice_map(20, 10);
-	states_t *matter = create_list_texture();
-	sfEvent event2;
+	game_object_t **rooms = malloc(sizeof(game_object_t)* 6);
+	sfIntRect rect_larger;
+	sfIntRect rect_smaller;
+	sfIntRect rect_rotate_right;
+	sfIntRect rect_rotate_left;
+	sfIntRect rect_up;
+	sfIntRect rect_down;
+
+	rect_larger = set_rectangle(rect_larger, 0,0,100,100);
+	rooms[0] = create_object("./picture/larger.png", (sfVector2f){-250, -300}, rect_larger);
+	rect_smaller = set_rectangle(rect_smaller, 0,0,100,100);
+	rooms[1] = create_object("./picture/smaller.png", (sfVector2f){-250, -300}, rect_smaller);
+	rect_rotate_right = set_rectangle(rect_rotate_right, 0,0,100,100);
+	rooms[2] = create_object("./picture/return.png", (sfVector2f){-250, -300}, rect_rotate_right);
+	rect_rotate_left = set_rectangle(rect_rotate_left, 0,0,100,100);
+	rooms[3] = create_object("./picture/return.png", (sfVector2f){-250, -300}, rect_rotate_left);
+	rect_up = set_rectangle(rect_up, 0,0,100,100);
+	rooms[4] = create_object("./picture/return.png", (sfVector2f){-250, -300}, rect_up);
+	rect_down = set_rectangle(rect_down, 0,0,100,100);
+	rooms[5] = create_object("./picture/return.png", (sfVector2f){-250, -300}, rect_down);
+	return (rooms);
+}
+
+button_t **create_buttons(game_object_t **rooms)
+{
+	button_t **elem = malloc(sizeof(button_t) * 6);
 	button_t button_larger;
 	button_t button_smaller;
 	button_t button_rotate_right;
 	button_t button_rotate_left;
 	button_t button_up;
 	button_t button_down;
+
+	elem[0] = buttonInitialise(&button_larger, (sfVector2f){10, 200}, (sfVector2f){100, 100}, larger, rooms[0]);
+	elem[1] = buttonInitialise(&button_smaller, (sfVector2f){10, 310}, (sfVector2f){100, 100}, smaller, rooms[1]);
+	elem[2] = buttonInitialise(&button_rotate_right, (sfVector2f){10, 410}, (sfVector2f){100, 100}, rotate_l, rooms[2]);
+	elem[3] = buttonInitialise(&button_rotate_left, (sfVector2f){10, 510}, (sfVector2f){100, 100}, rotate_r, rooms[3]);
+	elem[4] = buttonInitialise(&button_up, (sfVector2f){10, 610}, (sfVector2f){100, 100}, rotate_u, rooms[4]);
+	elem[5] = buttonInitialise(&button_down, (sfVector2f){10, 710}, (sfVector2f){100, 100}, rotate_d, rooms[5]);
+	return (elem);
+}*/
+
+int	main_loop()
+{
+	surface_t *win = init_window();
+	map_t *map = create_matrice_map(20, 10);
+	states_t *matter = create_list_texture();
 	button_t *elem[6];
-	int num_buttons = 6;
+	button_t button_larger;
+	button_t button_smaller;
+	button_t button_rotate_right;
+	button_t button_rotate_left;
+	button_t button_up;
+	button_t button_down;
 	game_object_t *rooms[6];
 	sfIntRect rect_larger;
 	sfIntRect rect_smaller;
@@ -184,21 +238,24 @@ int	main_loop()
 	rooms[4] = create_object("./picture/return.png", (sfVector2f){-250, -300}, rect_up);
 	rect_down = set_rectangle(rect_down, 0,0,100,100);
 	rooms[5] = create_object("./picture/return.png", (sfVector2f){-250, -300}, rect_down);
+
 	elem[0] = buttonInitialise(&button_larger, (sfVector2f){10, 200}, (sfVector2f){100, 100}, larger, rooms[0]);
 	elem[1] = buttonInitialise(&button_smaller, (sfVector2f){10, 310}, (sfVector2f){100, 100}, smaller, rooms[1]);
 	elem[2] = buttonInitialise(&button_rotate_right, (sfVector2f){10, 410}, (sfVector2f){100, 100}, rotate_l, rooms[2]);
 	elem[3] = buttonInitialise(&button_rotate_left, (sfVector2f){10, 510}, (sfVector2f){100, 100}, rotate_r, rooms[3]);
 	elem[4] = buttonInitialise(&button_up, (sfVector2f){10, 610}, (sfVector2f){100, 100}, rotate_u, rooms[4]);
 	elem[5] = buttonInitialise(&button_down, (sfVector2f){10, 710}, (sfVector2f){100, 100}, rotate_d, rooms[5]);
+
+	//rooms = create_game_object();
+	//elem = create_buttons(rooms);
 	if (win == NULL)
 		return (84);
 	sfRenderWindow_setFramerateLimit(win->window, 60);
 	while (sfRenderWindow_isOpen(win->window)) {
-		//event(win, map);
 		sfRenderWindow_clear(win->window, sfBlack);
 		display(win, map, matter);
-		analyse_event(win->window, event2, *elem, num_buttons, map);
-		for (int j = 0; j < num_buttons; j++)
+		analyse_event(win, *elem, map);
+		for (int j = 0; j < 6; j++)
 			sfRenderWindow_drawRectangleShape(win->window, elem[j]->rect, NULL);
 		sfRenderWindow_display(win->window);
 	}
