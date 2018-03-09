@@ -7,8 +7,8 @@
 
 #include "header_world.h"
 
-int	draw_background(map_t *map, surface_t *win)
+int	draw_background(surface_t *win)
 {
-	sfRenderWindow_drawSprite(win->window, map->background, NULL);
+	sfRenderWindow_drawSprite(win->window, win->background, NULL);
 	return (1);
 }

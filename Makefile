@@ -36,7 +36,7 @@ OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	=	-W -Wall -Wextra -I./include
 
-LDFLAGS	=	-lc_graph_prog -lm
+LDFLAGS	=	-lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 
 NAME	=	my_world
 

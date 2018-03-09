@@ -9,6 +9,6 @@
 
 int	main(void)
 {
-	main_loop(30, 30);
+	main_loop();
 	return (0);
 }

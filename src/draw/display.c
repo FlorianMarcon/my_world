@@ -6,14 +6,9 @@
 */
 
 #include "header_world.h"
-int	draw_water(sfRenderWindow *window, map_t *map);
 
-int	display(surface_t *win, map_t *map, states_t *matter)
+int	display(surface_t *win)
 {
-	draw_background(map, win);
-	draw_water(win->window, map);
-	draw_bottom_map(win->window, map, matter);
-	draw_2d_map(win->window, map, matter);
-	evolve_two_d_map(map);
+	draw_background(win);
 	return (0);
 }
