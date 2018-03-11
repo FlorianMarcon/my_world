@@ -18,7 +18,17 @@ int	button_click(button_t *button, sfVector2f clickPosition)
 	clickPosition.y > sfRectangleShape_getPosition(button->rect).y);
 }
 
-void	analyse_event(surface_t *win)
+char *my_calloc(char *line, int bufSize)
+{
+	line = malloc(sizeof(char) * bufSize);
+	if (line == NULL)
+		return (NULL);
+	for (int i = 0; i < bufSize; i++)
+		line[i] = 0;
+	return (line);
+}
+
+void	analyse_event(surface_t *win, button_t **elem, file_t *file_name)
 {
 	sfVector2i clickPosition_one;
 	sfVector2f clickPosition;
@@ -30,8 +40,19 @@ void	analyse_event(surface_t *win)
 								win->window);
 		clickPosition.x = clickPosition_one.x;
 		clickPosition.y = clickPosition_one.y;
-		if (win->event.type == sfEvtMouseButtonPressed)
+		if (win->event.type == sfEvtTextEntered)
+			print_file(win, file_name);
+		if (win->event.type == sfEvtMouseButtonPressed) {
+			if (button_click(elem[1], clickPosition)) {
+				file_name->str[file_name->counter + 1] = '\0';
+				elem[1]->callback(file_name->str);
+				file_name->counter = 0;
+				file_name->str = NULL;
+				file_name->str = my_calloc(file_name->str, sizeof(char) * 20);
+			}
 			if (button_click(elem[0], clickPosition))
-				elem[0]->callback();
+				elem[0]->callback(file_name->str);
+		}
 	}
+
 }
