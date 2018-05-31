@@ -22,7 +22,6 @@ SRC	=	$(wildcard *.c)		\
 		convert_base/conv_base_to.c	\
 		convert_base/convert_base.c	\
 		convert_base/convert_baseten_to_n.c	\
-
 OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	=	-I../../include -W -Wall -Wextra -Werror

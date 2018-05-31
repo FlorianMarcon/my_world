@@ -27,13 +27,11 @@ OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	=	-I../../include -W -Wall -Wextra -Werror
 
-NAME	=	libmy.a
-
 all:		$(OBJ)
-	ar rc $(NAME) $(OBJ)
+	ar rc libmy.a $(OBJ)
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f libmy.a

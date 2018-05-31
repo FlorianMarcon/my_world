@@ -94,7 +94,7 @@ int	separateur(char const *str);
 char	*convert_base(char const *nbr, char const *base_from,
 							char const *base_to);
 
-char	*convert_baseten_to_n(int nb, char *base_to);
+char	*convert_baseten_to_n(int nb, char *base_to);;
 
 int	lenint(int nb);
 

@@ -1,2 +1,0 @@
-.name "flonflon"
-.denj,s
