@@ -9,6 +9,9 @@
 #include "map.h"
 #include "window.h"
 #include "world.h"
+#include <stdio.h>
+
+#include <SFML/Graphics.h>
 
 int	main(void)
 {

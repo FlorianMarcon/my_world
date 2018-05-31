@@ -6,6 +6,7 @@
 */
 
 #include "world.h"
+#include <stdio.h>
 
 void	loop_game(world_t *world)
 {

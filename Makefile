@@ -13,11 +13,14 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/loop_game.c		\
 		$(WAY)/map/create_map.c	\
 		$(WAY)/map/create_graphical_map.c	\
+		$(WAY)/map/create_list_floor.c	\
 		$(WAY)/window/create_window.c		\
 		$(WAY)/world/create_world.c		\
 		$(WAY)/event/event.c			\
 		$(WAY)/display/display.c		\
-
+		$(WAY)/display/display_world.c		\
+		$(WAY)/button/up_action.c		\
+		$(WAY)/button/is_about.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -11,15 +11,26 @@
 
 void	create_graphical_map(map_t *map)
 {
+	unsigned int i = 0;
+
 	if ((map->graph_map = malloc(sizeof(sfVector2f *) * (map->height + 2))) == NULL) {
 		map->is_usable = false;
 		return;
 	}
-	for (unsigned int i = 0; i != map->height; i++) {
+	for (i = 0; i != map->height; i++) {
 		if ((map->graph_map[i] = malloc(sizeof(sfVector2f) * (map->width + 1))) == NULL) {
 			free(map->graph_map);
 			map->is_usable = false;
 			return;
 		}
 	}
+	if ((map->vertex_array = malloc(sizeof(*map->vertex_array) * (map->width * map->height))) == NULL) {
+		free(map->graph_map);
+		map->is_usable = false;
+		return;
+	}
+	for (i = 0; i != map->width * map->height; i++)
+		map->vertex_array[i] = sfVertexArray_create();
+	map->vertex_array[i] = NULL;
+	create_list_floor(map->floor);
 }

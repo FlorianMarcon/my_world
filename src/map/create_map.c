@@ -21,8 +21,10 @@ void	create_map_set_value(map_t *map)
 	map->x_center = map->width / 2;
 	map->y_center = map->height / 2;
 	map->zoom = 0;
-	map->x_translation = 0;
-	map->y_translation = 0;
+	map->x_translation = 1;
+	map->y_translation = 1;
+	map->rotation = 0;
+	map->inclinaison = 0;
 }
 void	create_map(map_t *map, unsigned int width, unsigned int height)
 {
