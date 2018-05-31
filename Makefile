@@ -26,6 +26,10 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/display/display_button.c		\
 		$(WAY)/button/up_action.c		\
 		$(WAY)/button/is_about.c		\
+		$(WAY)/menu/loop_menu.c			\
+		$(WAY)/menu/menu/create_menu.c			\
+		$(WAY)/menu/event/event_menu.c		\
+		$(WAY)/menu/display/display_menu.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

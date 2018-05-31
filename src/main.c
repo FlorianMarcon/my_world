@@ -6,12 +6,11 @@
 */
 
 #include <stdbool.h>
+#include <SFML/Graphics.h>
 #include "map.h"
 #include "window.h"
 #include "world.h"
-#include <stdio.h>
-
-#include <SFML/Graphics.h>
+#include "menu.h"
 
 int	main(void)
 {
@@ -21,6 +20,7 @@ int	main(void)
 
 	if (create_world(&world))
 		return (84);
+	loop_menu(&window);
 	loop_game(&world);
 	return (0);
 }
