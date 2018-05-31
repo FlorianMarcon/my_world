@@ -16,9 +16,14 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/map/create_list_floor.c	\
 		$(WAY)/window/create_window.c		\
 		$(WAY)/world/create_world.c		\
+		$(WAY)/world/create_button.c		\
+		$(WAY)/world/create_keyboardevent.c		\
 		$(WAY)/event/event.c			\
+		$(WAY)/event/event_button.c			\
+		$(WAY)/event/event_keyboard.c			\
 		$(WAY)/display/display.c		\
 		$(WAY)/display/display_world.c		\
+		$(WAY)/display/display_button.c		\
 		$(WAY)/button/up_action.c		\
 		$(WAY)/button/is_about.c		\
 

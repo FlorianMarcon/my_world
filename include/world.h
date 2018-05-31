@@ -23,6 +23,7 @@ typedef struct button_s {
 	sfVector2f position;
 	sfVector2u size;
 	void (*ptr)(map_t *);
+	sfText *text;
 }button_t;
 
 typedef struct world_s {
@@ -39,17 +40,25 @@ typedef struct world_s {
 	//keyboard
 	keyboardevent_t keyboardevent[2];
 	unsigned int nb_keyboardevent;
+
+	//other
+	sfFont *font;
 }world_t;
 
+void	create_button(world_t *world);
+void	create_keyboardevent(world_t *world);
 int	create_world(world_t *world);
 
 void	loop_game(world_t *world);
 
 //event
 void	event(world_t *world);
+void	event_button(world_t *world);
+void	event_keyboard(world_t *world);
 
 //display
 void	display(world_t *world);
+void	display_button(world_t *world);
 
 void	display_world(world_t *world);
 
