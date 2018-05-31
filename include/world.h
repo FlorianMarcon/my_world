@@ -18,7 +18,9 @@ typedef struct keyboardevent_s {
 }keyboardevent_t;
 
 typedef struct button_s {
-	sfTexture *texture;
+	sfTexture *idle;
+	sfTexture *hover;
+	sfTexture *clicked;
 	sfSprite *sprite;
 	sfVector2f position;
 	sfVector2u size;

@@ -10,7 +10,7 @@
 
 void	display(world_t *world)
 {
-	sfRenderWindow_clear(world->window->window, sfRed);
+	sfRenderWindow_clear(world->window->window, sfBlue);
 	//display_world(world);
 	display_button(world);
         sfRenderWindow_display(world->window->window);
