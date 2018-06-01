@@ -10,6 +10,27 @@
 
 void	up_action(map_t *map)
 {
+	if (map->type_select == summit)
+		map->map[map->y][map->x]++;
+	else {
+		map->map[map->y][map->x]++;
+		map->map[map->y + 1][map->x]++;
+		map->map[map->y][map->x + 1]++;
+		map->map[map->y + 1][map->x + 1]++;
+	}
+	fprintf(stderr, "UP ACTION\n");
+	(void)map;
+}
+void	down_action(map_t *map)
+{
+	if (map->type_select == summit)
+		map->map[map->y][map->x]--;
+	else {
+		map->map[map->y][map->x]--;
+		map->map[map->y + 1][map->x]--;
+		map->map[map->y][map->x + 1]--;
+		map->map[map->y + 1][map->x + 1]--;
+	}
 	fprintf(stderr, "UP ACTION\n");
 	(void)map;
 }

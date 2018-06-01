@@ -6,12 +6,15 @@
 */
 
 #include "map.h"
+#include <stdio.h>
 
 void	rotation_right(map_t *map)
 {
-	map->rotation++;
+	if (map->rotation < 90)
+		map->rotation++;
 }
 void	rotation_left(map_t *map)
 {
-	map->rotation--;
+	if (map->rotation > -90)
+		map->rotation--;
 }

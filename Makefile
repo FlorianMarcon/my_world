@@ -23,14 +23,17 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/event/event.c			\
 		$(WAY)/event/event_button.c			\
 		$(WAY)/event/event_keyboard.c			\
+		$(WAY)/event/event_selection.c			\
 		$(WAY)/display/display.c		\
 		$(WAY)/display/display_world.c		\
 		$(WAY)/display/display_button.c		\
 		$(WAY)/display/set_vector_array.c	\
 		$(WAY)/display/set_vertex_array.c	\
+		$(WAY)/display/display_selection.c	\
 		$(WAY)/button/up_action.c		\
 		$(WAY)/button/rotation.c		\
 		$(WAY)/button/zoom.c		\
+		$(WAY)/button/type_select.c		\
 		$(WAY)/button/inclinaison.c		\
 		$(WAY)/button/translation.c		\
 		$(WAY)/button/is_about.c		\

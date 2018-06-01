@@ -17,5 +17,6 @@ void	display(world_t *world)
 		sfRenderWindow_drawSprite(window, world->spr_back, NULL);
 	display_world(world);
 	display_button(world);
+	display_selection(world);
         sfRenderWindow_display(window);
 }

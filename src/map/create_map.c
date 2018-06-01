@@ -25,6 +25,9 @@ void	create_map_set_value(map_t *map)
 	map->y_translation = 1;
 	map->rotation = 0;
 	map->inclinaison = 0;
+	map->x = 0;
+	map->y = 0;
+	map->type_select = square;
 }
 
 void	create_map_map(map_t *map)

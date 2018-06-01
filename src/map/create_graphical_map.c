@@ -29,5 +29,7 @@ void	create_graphical_map(map_t *map)
 		map->is_usable = false;
 		return;
 	}
+	for (int i = 0; i != 5; i++)
+		map->vertex_mouse[i] = NULL;
 	create_list_floor(map->floor);
 }

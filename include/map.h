@@ -15,6 +15,11 @@
 #define NB_FLOOR 3
 #define SCALING 110
 
+typedef enum selection_s {
+	summit,
+	square
+}selection_t;
+
 typedef struct map_s {
 
 	unsigned int width;
@@ -39,6 +44,12 @@ typedef struct map_s {
 
 	bool is_usable;
 
+	// selection
+	unsigned int x;
+	unsigned int y;
+	selection_t type_select;
+
+	sfVertexArray *vertex_mouse[5];
 }map_t;
 
 //create map
@@ -63,6 +74,7 @@ void	load_map(map_t *map, char *path);
 // button action
 
 void	up_action(map_t *map);
+void	down_action(map_t *map);
 
 void	rotation_right(map_t *map);
 void	rotation_left(map_t *map);
@@ -77,6 +89,9 @@ void	translation_left(map_t *map);
 void	translation_right(map_t *map);
 void	translation_up(map_t *map);
 void	translation_down(map_t *map);
+
+void	select_square(map_t *map);
+void	select_summit(map_t *map);
 
 //utilitaries
 char	*transform_integer_in_str(int nb);
