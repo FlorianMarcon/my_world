@@ -26,7 +26,13 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/display/display.c		\
 		$(WAY)/display/display_world.c		\
 		$(WAY)/display/display_button.c		\
+		$(WAY)/display/set_vector_array.c	\
+		$(WAY)/display/set_vertex_array.c	\
 		$(WAY)/button/up_action.c		\
+		$(WAY)/button/rotation.c		\
+		$(WAY)/button/zoom.c		\
+		$(WAY)/button/inclinaison.c		\
+		$(WAY)/button/translation.c		\
 		$(WAY)/button/is_about.c		\
 		$(WAY)/menu/loop_menu.c			\
 		$(WAY)/menu/menu/create_menu.c			\

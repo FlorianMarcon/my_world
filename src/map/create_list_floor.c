@@ -10,7 +10,7 @@
 
 void	set_floor(floor_t *floor, char *texture, int id, type_floor_t type)
 {
-	floor->state.blendMode = sfBlendNone;
+	floor->state.blendMode = sfBlendAlpha;
 	floor->state.texture = sfTexture_createFromFile(texture, NULL);
 	floor->state.transform = sfTransform_Identity;
 	floor->state.shader = NULL;

@@ -64,7 +64,24 @@ void	load_map(map_t *map, char *path);
 
 void	up_action(map_t *map);
 
+void	rotation_right(map_t *map);
+void	rotation_left(map_t *map);
+
+void	inclinaison_down(map_t *map);
+void	inclinaison_up(map_t *map);
+
+void	zoom_in(map_t *map);
+void	zoom_out(map_t *map);
+
+void	translation_left(map_t *map);
+void	translation_right(map_t *map);
+void	translation_up(map_t *map);
+void	translation_down(map_t *map);
+
 //utilitaries
 char	*transform_integer_in_str(int nb);
 
+// other
+void	set_vertex_array(map_t *map);
+void	set_vector_array(map_t *map);
 #endif

@@ -40,11 +40,14 @@ typedef struct world_s {
 	unsigned int nb_button;
 
 	//keyboard
-	keyboardevent_t keyboardevent[2];
+	keyboardevent_t keyboardevent[60];
 	unsigned int nb_keyboardevent;
 
 	//other
 	sfFont *font;
+
+	sfTexture *tex_back;
+	sfSprite *spr_back;
 }world_t;
 
 void	create_button(world_t *world);

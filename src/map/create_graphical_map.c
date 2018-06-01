@@ -29,8 +29,5 @@ void	create_graphical_map(map_t *map)
 		map->is_usable = false;
 		return;
 	}
-	for (i = 0; i != map->width * map->height; i++)
-		map->vertex_array[i] = sfVertexArray_create();
-	map->vertex_array[i] = NULL;
 	create_list_floor(map->floor);
 }

@@ -10,8 +10,12 @@
 
 void	display(world_t *world)
 {
-	sfRenderWindow_clear(world->window->window, sfBlue);
-	//display_world(world);
+	sfRenderWindow *window = world->window->window;
+
+	sfRenderWindow_clear(window, sfBlack);
+	if (world->spr_back != NULL)
+		sfRenderWindow_drawSprite(window, world->spr_back, NULL);
+	display_world(world);
 	display_button(world);
-        sfRenderWindow_display(world->window->window);
+        sfRenderWindow_display(window);
 }
