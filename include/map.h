@@ -45,8 +45,13 @@ void	create_map(map_t *map, unsigned int width, unsigned int height);
 
 void	create_graphical_map(map_t *map);
 
+void	save_map(map_t *map);
+
 // button action
 
 void	up_action(map_t *map);
+
+//utilitaries
+char	*transform_integer_in_str(int nb);
 
 #endif

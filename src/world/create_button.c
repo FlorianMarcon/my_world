@@ -42,11 +42,11 @@ void	set_button_texture(button_t *but, char *idle, char *hover, char *click)
 }
 void	create_button(world_t *world)
 {
-	world->nb_button = 6;
+	world->nb_button = 7;
 	set_button(&world->button[0], (sfVector2f){0, 20}, &up_action);
 	set_helptextbox(&world->button[0], world->font, "Up tool");
 	set_button_texture(&world->button[0], "./picture/up_idle.png", "./picture/up_hover.png", "./picture/up_clicked.png");
-	set_button(&world->button[1], (sfVector2f){0, 120}, &up_action);
+	set_button(&world->button[1], (sfVector2f){0, 120}, &save_map);
 	set_helptextbox(&world->button[1], world->font, "Down tool");
 	set_button_texture(&world->button[1], "./picture/down_idle.png", "./picture/down_hover.png", "./picture/down_clicked.png");
 	set_button(&world->button[2], (sfVector2f){0, 240}, &up_action);
@@ -61,4 +61,7 @@ void	create_button(world_t *world)
 	set_button(&world->button[5], (sfVector2f){1000, 60}, &up_action);
 	set_helptextbox(&world->button[5], world->font, "Selection square");
 	set_button_texture(&world->button[5], "./picture/floor_idle.png", "./picture/floor_hover.png", "./picture/summit_clicked.png");
+	set_button(&world->button[6], (sfVector2f){1050, 120}, &save_map);
+	set_helptextbox(&world->button[6], world->font, "Save your map");
+	set_button_texture(&world->button[6], "./picture/save_idle.png", "./picture/save_hover.png", "./picture/save_clicked.png");
 }
