@@ -15,6 +15,7 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/map/create_graphical_map.c	\
 		$(WAY)/map/create_list_floor.c	\
 		$(WAY)/map/save_map.c		\
+		$(WAY)/map/load_map.c		\
 		$(WAY)/window/create_window.c		\
 		$(WAY)/world/create_world.c		\
 		$(WAY)/world/create_button.c		\
@@ -32,6 +33,7 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/menu/event/event_menu.c		\
 		$(WAY)/menu/display/display_menu.c		\
 		$(WAY)/utilitaries/transform_integer_in_str.c	\
+		$(WAY)/utilitaries/parsing_str.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -26,21 +26,26 @@ void	create_map_set_value(map_t *map)
 	map->rotation = 0;
 	map->inclinaison = 0;
 }
+
+void	create_map_map(map_t *map)
+{
+	if ((map->map = malloc(sizeof(*map->map) * (map->height + 1))) == NULL) {
+		map->is_usable = false;
+		return;
+	}
+	for (unsigned int i = 0; i != map->height; i++)
+	if ((map->map[i] = malloc(sizeof(int) * (map->width + 1))) == NULL) {
+		free(map->map);
+		map->is_usable = false;
+		return;
+	}
+}
 void	create_map(map_t *map, unsigned int width, unsigned int height)
 {
 	map->width = width;
 	map->height = height;
 	map->is_usable = true;
-	if ((map->map = malloc(sizeof(*map->map) * (height + 1))) == NULL) {
-		map->is_usable = false;
-		return;
-	}
-	for (unsigned int i = 0; i != height; i++)
-		if ((map->map[i] = malloc(sizeof(int) * (width + 1))) == NULL) {
-			free(map->map);
-			map->is_usable = false;
-			return;
-		}
+	create_map_map(map);
 	create_map_set_id(map);
 	create_map_set_value(map);
 	create_graphical_map(map);

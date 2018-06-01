@@ -24,7 +24,7 @@ void	create_graphical_map(map_t *map)
 			return;
 		}
 	}
-	if ((map->vertex_array = malloc(sizeof(*map->vertex_array) * (map->width * map->height))) == NULL) {
+	if ((map->vertex_array = malloc(sizeof(*map->vertex_array) * (map->width * map->height + 1))) == NULL) {
 		free(map->graph_map);
 		map->is_usable = false;
 		return;

@@ -75,4 +75,7 @@ int	is_about(sfRenderWindow *renderwindow, button_t *button);
 
 //keyboard
 
+//other
+char	**parsing_str(char *str, char lab);
+
 #endif

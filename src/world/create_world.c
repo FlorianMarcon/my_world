@@ -12,7 +12,6 @@
 
 int	create_world(world_t *world)
 {
-	create_map(world->map, 10, 10);
 	if (world->map->is_usable == false || create_window(world->window))
 		return (1);
 	world->font = sfFont_createFromFile("font/font.otf");

@@ -41,11 +41,24 @@ typedef struct map_s {
 
 }map_t;
 
+//create map
+
 void	create_map(map_t *map, unsigned int width, unsigned int height);
 
 void	create_graphical_map(map_t *map);
 
+void	create_map_map(map_t *map);
+
+void	create_map_set_value(map_t *map);
+
+void	create_map_set_id(map_t *map);
+
+// save
 void	save_map(map_t *map);
+
+// load_map
+
+void	load_map(map_t *map, char *path);
 
 // button action
 

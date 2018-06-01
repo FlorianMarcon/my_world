@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 #ifndef READ_SIZE
-#define READ_SIZE	5
+#define READ_SIZE	1
 #endif
 
 #ifndef NEXT_LINE_

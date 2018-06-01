@@ -36,7 +36,7 @@ void	write_map(int fd, map_t *map)
 		for (unsigned int x = 0; x != map->width; x++) {
 			str = transform_integer_in_str(map->map[y][x]);
 			write(fd, str, my_strlen(str));
-			write(fd, "\t", 1);
+			write(fd, " ", 1);
 			free(str);
 		}
 		write(fd, "\n", 1);
