@@ -36,7 +36,7 @@ typedef struct world_s {
 	map_t *map;
 
 	//button
-	button_t button[5];
+	button_t button[10];
 	unsigned int nb_button;
 
 	//keyboard

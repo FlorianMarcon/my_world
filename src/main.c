@@ -20,7 +20,7 @@ int	main(void)
 
 	if (create_world(&world))
 		return (84);
-	loop_menu(&window);
+	//loop_menu(&window);
 	loop_game(&world);
 	return (0);
 }

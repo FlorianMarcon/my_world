@@ -42,12 +42,23 @@ void	set_button_texture(button_t *but, char *idle, char *hover, char *click)
 }
 void	create_button(world_t *world)
 {
-	world->nb_button = 1;
-	set_button(&world->button[0], (sfVector2f){0, 0}, &up_action);
+	world->nb_button = 6;
+	set_button(&world->button[0], (sfVector2f){0, 20}, &up_action);
 	set_helptextbox(&world->button[0], world->font, "Up tool");
-	set_button_texture(&world->button[0], "./picture/smaller_idle.png", "./picture/smaller_hover.png", "./picture/smaller_clicked.png");
-
-	//set_button(&world->button[1], "./picture/down.png", (sfVector2f){0,70}, NULL);
-	//set_button(&world->button[2], "./picture/larger.png", (sfVector2f){0, 140}, &up_action);
-	//set_button(&world->button[3], "./picture/smaller.png", (sfVector2f){0,210}, NULL);
+	set_button_texture(&world->button[0], "./picture/up_idle.png", "./picture/up_hover.png", "./picture/up_clicked.png");
+	set_button(&world->button[1], (sfVector2f){0, 120}, &up_action);
+	set_helptextbox(&world->button[1], world->font, "Down tool");
+	set_button_texture(&world->button[1], "./picture/down_idle.png", "./picture/down_hover.png", "./picture/down_clicked.png");
+	set_button(&world->button[2], (sfVector2f){0, 240}, &up_action);
+	set_helptextbox(&world->button[2], world->font, "Zoom in");
+	set_button_texture(&world->button[2], "./picture/plus_idle.png", "./picture/plus_hover.png", "./picture/smaller_clicked.png");
+	set_button(&world->button[3], (sfVector2f){0, 360}, &up_action);
+	set_helptextbox(&world->button[3], world->font, "Zoom out");
+	set_button_texture(&world->button[3], "./picture/moins_idle.png", "./picture/moins_hover.png", "./picture/smaller_clicked.png");
+	set_button(&world->button[4], (sfVector2f){1000, 0}, &up_action);
+	set_helptextbox(&world->button[4], world->font, "Selection summit");
+	set_button_texture(&world->button[4], "./picture/summit_idle.png", "./picture/summit_hover.png", "./picture/summit_clicked.png");
+	set_button(&world->button[5], (sfVector2f){1000, 60}, &up_action);
+	set_helptextbox(&world->button[5], world->font, "Selection square");
+	set_button_texture(&world->button[5], "./picture/floor_idle.png", "./picture/floor_hover.png", "./picture/summit_clicked.png");
 }
