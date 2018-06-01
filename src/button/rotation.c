@@ -15,6 +15,6 @@ void	rotation_right(map_t *map)
 }
 void	rotation_left(map_t *map)
 {
-	if (map->rotation > -90)
+	if (map->rotation > 0)
 		map->rotation--;
 }

@@ -30,8 +30,8 @@ sfVector2i	search_position_selectioned_square(world_t *world)
 	sfVector2i pos = sfMouse_getPosition((sfWindow *)world->window->window);
 	map_t *map = world->map;
 
-	for (unsigned int y = 0; y != map->height - 2; y++) {
-		for (unsigned int x = 0; x != map->width - 2; x++)  {
+	for (unsigned int y = 0; y != map->height - 1; y++) {
+		for (unsigned int x = 0; x != map->width - 1; x++)  {
 			if (map->rotation < 0 && is_here_negatif(&pos, map->graph_map, x, y)) {
 				pos.x = x;
 				pos.y = y;

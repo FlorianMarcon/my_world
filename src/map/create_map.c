@@ -20,9 +20,9 @@ void	create_map_set_value(map_t *map)
 {
 	map->x_center = map->width / 2;
 	map->y_center = map->height / 2;
-	map->zoom = -21;
+	map->zoom = (map->width) * -1;
 	map->x_translation = 1;
-	map->y_translation = 1;
+	map->y_translation = -1 * map->y_center;
 	map->rotation = 15;
 	map->inclinaison = 75;
 	map->x = 0;

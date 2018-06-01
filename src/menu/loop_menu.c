@@ -18,7 +18,7 @@ void	menu_create(menu_t *menu, map_t *map)
 		map->do_exit = true;
 		map->width = my_getnbr(menu->textbox[1].str);
 		map->height = my_getnbr(menu->textbox[2].str);
-		if (map->width <= 10 || map->height <= 10) {
+		if (map->width < 10 || map->height < 10) {
 			map->width = 10;
 			map->height = 10;
 		}
