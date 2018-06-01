@@ -41,6 +41,9 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/menu/menu/create_menu.c			\
 		$(WAY)/menu/event/event_menu.c		\
 		$(WAY)/menu/display/display_menu.c		\
+		$(WAY)/menu/event/event_textbox.c			\
+		$(WAY)/menu/button/menu_create_map.c	\
+		$(WAY)/menu/button/menu_load_map.c	\
 		$(WAY)/utilitaries/transform_integer_in_str.c	\
 		$(WAY)/utilitaries/parsing_str.c	\
 

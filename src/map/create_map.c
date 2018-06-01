@@ -20,11 +20,11 @@ void	create_map_set_value(map_t *map)
 {
 	map->x_center = map->width / 2;
 	map->y_center = map->height / 2;
-	map->zoom = 0;
+	map->zoom = -21;
 	map->x_translation = 1;
 	map->y_translation = 1;
-	map->rotation = 0;
-	map->inclinaison = 0;
+	map->rotation = 15;
+	map->inclinaison = 75;
 	map->x = 0;
 	map->y = 0;
 	map->type_select = square;

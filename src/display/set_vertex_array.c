@@ -10,19 +10,19 @@
 #include <stdio.h>
 #include "world.h"
 
-sfVertexArray	*set_vertex_array_index(sfVector2f *vec)
+sfVertexArray	*set_vertex_array_index(sfVector2f *vec, sfColor color)
 {
 	sfVertexArray *vertex_array = sfVertexArray_create();
 
 	if (vertex_array == NULL)
 		return (NULL);
-	sfVertex vertex1 = {.position = vec[0], .color = sfWhite,\
+	sfVertex vertex1 = {.position = vec[0], .color = color,\
 					.texCoords = (sfVector2f){0, 0}};
-	sfVertex vertex2 = {.position = vec[1], .color = sfWhite,\
+	sfVertex vertex2 = {.position = vec[1], .color = color,\
 					.texCoords = (sfVector2f){0, 100}};
-	sfVertex vertex3 = {.position = vec[2], .color = sfWhite,\
+	sfVertex vertex3 = {.position = vec[2], .color = color,\
 					.texCoords = (sfVector2f){100, 100}};
-	sfVertex vertex4 = {.position = vec[3], .color = sfWhite,\
+	sfVertex vertex4 = {.position = vec[3], .color = color,\
 					.texCoords = (sfVector2f){100, 0}};
 	sfVertexArray_append(vertex_array, vertex1);
 	sfVertexArray_append(vertex_array, vertex2);
@@ -36,15 +36,15 @@ void	set_vertex_array(map_t *map)
 	sfVector2f vec[4];
 	unsigned int i = 0;
 
-	for (unsigned int y = 0; y != map->height - 2; y++) {
-		for (unsigned int x = 0; x != map->width - 2; x++) {
+	for (unsigned int y = 0; y != map->height - 1; y++) {
+		for (unsigned int x = 0; x != map->width - 1; x++) {
 			if (map->vertex_array[i] != NULL)
 				sfVertexArray_destroy(map->vertex_array[i]);
 			vec[0] = map->graph_map[y][x];
 			vec[1] = map->graph_map[y][x + 1];
 			vec[2] = map->graph_map[y + 1][x + 1];
 			vec[3] = map->graph_map[y + 1][x];
-			map->vertex_array[i++] = set_vertex_array_index(vec);
+			map->vertex_array[i++] = set_vertex_array_index(vec, sfWhite);
 		}
 	}
 	map->vertex_array[i] = NULL;

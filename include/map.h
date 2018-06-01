@@ -21,6 +21,7 @@ typedef enum selection_s {
 }selection_t;
 
 typedef struct map_s {
+	char *name;
 
 	unsigned int width;
 	unsigned int height;
@@ -40,10 +41,14 @@ typedef struct map_s {
 	sfVector2f **graph_map;
 	sfVertexArray **vertex_array;
 
+	sfVertexArray **vertex_bottom;
 	floor_t floor[3];
 
 	bool is_usable;
 
+	bool create;
+	bool load;
+	bool do_exit;
 	// selection
 	unsigned int x;
 	unsigned int y;

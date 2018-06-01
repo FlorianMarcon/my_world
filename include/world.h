@@ -50,6 +50,7 @@ typedef struct world_s {
 	sfSprite *spr_back;
 
 	bool done;
+
 }world_t;
 
 void	create_button(world_t *world);
@@ -77,6 +78,8 @@ void	display_button_help_text(window_t *window, button_t *button);
 void	display_world(world_t *world);
 
 void	display_selection(world_t *world);
+
+sfVertexArray	*set_vertex_array_index(sfVector2f *vec, sfColor color);
 
 //button
 int	is_about(sfRenderWindow *renderwindow, button_t *button);

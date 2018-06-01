@@ -9,6 +9,13 @@
 #include <stdio.h>
 #include "map.h"
 
+void	set_graphical_map(map_t *map)
+{
+	for (int i = 0; i != 5; i++)
+		map->vertex_mouse[i] = NULL;
+	for (unsigned int i = 0; i != map->width * map->height + 1; i++)
+		map->vertex_array[i] = NULL;
+}
 void	create_graphical_map(map_t *map)
 {
 	unsigned int i = 0;
@@ -29,7 +36,7 @@ void	create_graphical_map(map_t *map)
 		map->is_usable = false;
 		return;
 	}
-	for (int i = 0; i != 5; i++)
-		map->vertex_mouse[i] = NULL;
+	set_graphical_map(map);
+	map->vertex_bottom = malloc(sizeof(*map->vertex_bottom) * (map->width * map->height + 1));
 	create_list_floor(map->floor);
 }

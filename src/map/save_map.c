@@ -44,10 +44,13 @@ void	write_map(int fd, map_t *map)
 }
 void	save_map(map_t *map)
 {
-	int fd = open("your_map.legend", O_CREAT | O_TRUNC | O_WRONLY, S_IROTH | S_IRGRP | S_IRUSR);
+	char *name = my_strcat(map->name, ".legend");
+	int fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, S_IROTH | S_IRGRP | S_IRUSR);
 
 	if (fd == -1)
 		return;
+	write(fd, map->name, my_strlen(map->name));
+	write(fd, "\n", 1);
 	write_caracteristique(fd, map);
 	write_map(fd, map);
 	close(fd);

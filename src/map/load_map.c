@@ -63,10 +63,13 @@ void	load_map(map_t *map, char *path)
 {
 	int fd = open(path, O_RDONLY);
 
-	if (fd == -1)
+	if (fd == -1) {
+		map->is_usable = false;
 		return;
+	}
 	map->width = 100;
 	map->height = 100;
+	map->name = get_next_line(fd);
 	load_caracteristique(fd, map);
 	create_map_map(map);
 	create_map_set_id(map);
