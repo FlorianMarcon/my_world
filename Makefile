@@ -53,20 +53,25 @@ CFLAGS	=	-W -Wall -Wextra -Werror -g3 -I./include
 
 LDFLAGS	=	-lcsfml-system -lcsfml-window -lcsfml-graphics -lm
 
+LDFLAGS_MOULI	=	-lc_graph_prog -lm
+
 NAME	=	my_world
 
 RM	=	rm -f
 
 LIB	=	-L./lib/my -lmy
 
-all:	$(OBJ)
+all:	$(NAME)
+
+$(NAME):$(OBJ)
+	make -C./lib/my
+	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LDFLAGS_MOULI)
+
+me:	$(OBJ)
 	make -C./lib/my
 	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LDFLAGS)
 
-$(NAME):
-	$(OBJ)
-	make -C./lib/my
-	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LDFLAGS)
+
 clean:
 	make clean -C./tests
 	make clean -C./lib/my
