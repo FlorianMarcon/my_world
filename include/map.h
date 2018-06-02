@@ -98,6 +98,8 @@ void	translation_down(map_t *map);
 void	select_square(map_t *map);
 void	select_summit(map_t *map);
 
+void	quit(map_t *map);
+
 //utilitaries
 char	*transform_integer_in_str(int nb);
 

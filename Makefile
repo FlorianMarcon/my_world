@@ -36,6 +36,7 @@ SRC	=	$(WAY)/main.c		\
 		$(WAY)/button/type_select.c		\
 		$(WAY)/button/inclinaison.c		\
 		$(WAY)/button/translation.c		\
+		$(WAY)/button/quit.c		\
 		$(WAY)/button/is_about.c		\
 		$(WAY)/menu/loop_menu.c			\
 		$(WAY)/menu/menu/create_menu.c			\

@@ -10,7 +10,11 @@
 
 void	loop_game(world_t *world)
 {
-	while (sfRenderWindow_isOpen(world->window->window)) {
+	map_t *map = world->map;
+	window_t *window = world->window;
+
+	map->do_exit = false;
+	while (sfRenderWindow_isOpen(window->window) && map->do_exit != true) {
 		event(world);
 		display(world);
 	}

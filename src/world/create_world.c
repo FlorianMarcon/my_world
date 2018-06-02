@@ -15,9 +15,8 @@ void	set_background_world(world_t *world)
 	char path[] = "./picture/background.jpg";
 
 	world->spr_back = sfSprite_create();
+	world->tex_back = sfTexture_createFromFile(path, NULL);
 	if (world->spr_back != NULL) {
-		if ((world->tex_back = sfTexture_createFromFile(path, NULL)) == NULL)
-			fprintf(stderr, "NULL\n");
 		sfSprite_setTexture(world->spr_back, world->tex_back, sfTrue);
 	}
 }

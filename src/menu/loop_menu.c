@@ -30,7 +30,6 @@ void	menu_load(menu_t *menu, map_t *map)
 	char *str = menu->textbox[0].str;
 
 	str = my_strcat(str, ".legend");
-	fprintf(stderr, "%s\n", str);
 	load_map(map, str);
 	if (map->is_usable == true)
 		map->do_exit = true;

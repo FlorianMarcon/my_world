@@ -6,6 +6,7 @@
 */
 
 #include "world.h"
+#include <stdio.h>
 
 void	event_button(world_t *world)
 {
