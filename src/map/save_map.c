@@ -45,7 +45,9 @@ void	write_map(int fd, map_t *map)
 void	save_map(map_t *map)
 {
 	char *name = my_strcat(map->name, ".legend");
-	int fd = open(name, O_CREAT | O_TRUNC | O_WRONLY, S_IROTH | S_IRGRP | S_IRUSR);
+	int flags = O_CREAT | O_TRUNC | O_WRONLY;
+	mode_t mode = S_IROTH | S_IRGRP | S_IRUSR;
+	int fd = open(name, flags, mode);
 
 	if (fd == -1)
 		return;

@@ -18,10 +18,12 @@ void	display_state_button(window_t *window, button_t *button)
 {
 	if (is_about(window->window, button)) {
 		if (sfMouse_isButtonPressed(sfMouseLeft))
-			sfSprite_setTexture(button->sprite, button->clicked, sfTrue);
+			sfSprite_setTexture(button->sprite, button->clicked,
+									sfTrue);
 		else {
 			display_button_help_text(window, button);
-			sfSprite_setTexture(button->sprite, button->hover, sfTrue);
+			sfSprite_setTexture(button->sprite, button->hover,
+									sfTrue);
 		}
 	} else
 		sfSprite_setTexture(button->sprite, button->idle, sfTrue);

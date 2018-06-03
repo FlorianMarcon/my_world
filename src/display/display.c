@@ -18,5 +18,5 @@ void	display(world_t *world)
 	display_world(world);
 	display_button(world);
 	display_selection(world);
-        sfRenderWindow_display(window);
+	sfRenderWindow_display(window);
 }

@@ -13,7 +13,8 @@ void	menu_create(menu_t *menu, map_t *map)
 {
 	if (my_strlen(menu->textbox[0].str) <= 0)
 		return;
-	if (my_str_isnum(menu->textbox[1].str) && my_str_isnum(menu->textbox[2].str)) {
+	if (my_str_isnum(menu->textbox[1].str) &&
+					my_str_isnum(menu->textbox[2].str)) {
 		map->name = my_strdup(menu->textbox[0].str);
 		map->do_exit = true;
 		map->width = my_getnbr(menu->textbox[1].str);

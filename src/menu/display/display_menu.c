@@ -35,5 +35,5 @@ void	display_menu(window_t *window, menu_t *menu)
 	sfRenderWindow_drawSprite(window->window, menu->spr_back, NULL);
 	display_button_menu(menu, window);
 	display_textbox(window, menu);
-        sfRenderWindow_display(window->window);
+	sfRenderWindow_display(window->window);
 }

@@ -10,7 +10,8 @@
 int	create_window(window_t *window)
 {
 	window->mode = (sfVideoMode){1200, 800, 32};
-	window->window = sfRenderWindow_create(window->mode, "SFML window", sfResize | sfClose, NULL);
+	window->window = sfRenderWindow_create(window->mode, "SFML window",
+						sfResize | sfClose, NULL);
 	if (!window->window)
 		return (1);
 	return (0);

@@ -11,7 +11,8 @@
 void	event_button_menu(window_t *window, menu_t *menu)
 {
 	for (unsigned int i = 0; i != menu->nb_button; i++) {
-		if (sfMouse_isButtonPressed(sfMouseLeft) && is_about(window->window, &menu->button[i]) && menu->button[i].ptr != NULL) {
+		if (sfMouse_isButtonPressed(sfMouseLeft) &&
+is_about(window->window, &menu->button[i]) && menu->button[i].ptr != NULL) {
 			menu->button[i].ptr(menu->map);
 		}
 	}

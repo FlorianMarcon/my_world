@@ -32,7 +32,8 @@ void	create_map_set_value(map_t *map)
 
 void	create_map_map(map_t *map)
 {
-	if ((map->map = malloc(sizeof(*map->map) * (map->height + 1))) == NULL) {
+	if ((map->map = malloc(sizeof(*map->map) *
+			(map->height + 1))) == NULL) {
 		map->is_usable = false;
 		return;
 	}

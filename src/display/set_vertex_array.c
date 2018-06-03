@@ -44,7 +44,8 @@ void	set_vertex_array(map_t *map)
 			vec[1] = map->graph_map[y][x + 1];
 			vec[2] = map->graph_map[y + 1][x + 1];
 			vec[3] = map->graph_map[y + 1][x];
-			map->vertex_array[i++] = set_vertex_array_index(vec, sfWhite);
+			map->vertex_array[i++] = set_vertex_array_index(vec,
+								sfWhite);
 		}
 	}
 	map->vertex_array[i] = NULL;

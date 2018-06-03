@@ -16,27 +16,38 @@ void	set_graphical_map(map_t *map)
 	for (unsigned int i = 0; i != map->width * map->height + 1; i++)
 		map->vertex_array[i] = NULL;
 }
-void	create_graphical_map(map_t *map)
+
+int	create_graphical_map_indexe(map_t *map)
 {
 	unsigned int i = 0;
 
-	if ((map->graph_map = malloc(sizeof(sfVector2f *) * (map->height + 2))) == NULL) {
+	if ((map->graph_map = malloc(sizeof(sfVector2f *)
+						* (map->height + 2))) == NULL) {
 		map->is_usable = false;
-		return;
+		return (1);
 	}
 	for (i = 0; i != map->height; i++) {
-		if ((map->graph_map[i] = malloc(sizeof(sfVector2f) * (map->width + 1))) == NULL) {
+		if ((map->graph_map[i] = malloc(sizeof(sfVector2f)
+						* (map->width + 1))) == NULL) {
 			free(map->graph_map);
 			map->is_usable = false;
-			return;
+			return (1);
 		}
 	}
-	if ((map->vertex_array = malloc(sizeof(*map->vertex_array) * (map->width * map->height + 1))) == NULL) {
+	return (0);
+}
+void	create_graphical_map(map_t *map)
+{
+	if (create_graphical_map_indexe(map))
+		return;
+	if ((map->vertex_array = malloc(sizeof(*map->vertex_array)
+				* (map->width * map->height + 1))) == NULL) {
 		free(map->graph_map);
 		map->is_usable = false;
 		return;
 	}
 	set_graphical_map(map);
-	map->vertex_bottom = malloc(sizeof(*map->vertex_bottom) * (map->width * map->height + 1));
+	map->vertex_bottom = malloc(sizeof(*map->vertex_bottom)
+					* (map->width * map->height + 1));
 	create_list_floor(map->floor);
 }

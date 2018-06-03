@@ -29,23 +29,31 @@ void	display_selection_summit(map_t *map)
 	sfVector2f center = map->graph_map[map->y][map->x];
 
 	if (map->x != 0)
-		vertex[i++] = set_vertex_array_line(&center, &map->graph_map[map->y][map->x - 1]);
+		vertex[i++] = set_vertex_array_line(&center,
+					&map->graph_map[map->y][map->x - 1]);
 	if (map->x != map->width - 2)
-		vertex[i++] = set_vertex_array_line(&center, &map->graph_map[map->y][map->x + 1]);
+		vertex[i++] = set_vertex_array_line(&center,
+					&map->graph_map[map->y][map->x + 1]);
 	if (map->y != 0)
-		vertex[i++] = set_vertex_array_line(&center, &map->graph_map[map->y - 1][map->x]);
+		vertex[i++] = set_vertex_array_line(&center,
+					&map->graph_map[map->y - 1][map->x]);
 	if (map->y != map->height - 2)
-		vertex[i++] = set_vertex_array_line(&center, &map->graph_map[map->y + 1][map->x]);
+		vertex[i++] = set_vertex_array_line(&center,
+					&map->graph_map[map->y + 1][map->x]);
 	vertex[i] = NULL;
 }
 void	display_selection_square(map_t *map)
 {
 	sfVertexArray **vertex = map->vertex_mouse;
 
-	vertex[0] = set_vertex_array_line(&map->graph_map[map->y][map->x], &map->graph_map[map->y][map->x + 1]);
-	vertex[2] = set_vertex_array_line(&map->graph_map[map->y][map->x], &map->graph_map[map->y + 1][map->x]);
-	vertex[1] = set_vertex_array_line(&map->graph_map[map->y + 1][map->x + 1], &map->graph_map[map->y][map->x + 1]);
-	vertex[3] = set_vertex_array_line(&map->graph_map[map->y + 1][map->x + 1], &map->graph_map[map->y + 1][map->x]);
+	vertex[0] = set_vertex_array_line(&map->graph_map[map->y][map->x],
+					&map->graph_map[map->y][map->x + 1]);
+	vertex[2] = set_vertex_array_line(&map->graph_map[map->y][map->x],
+					&map->graph_map[map->y + 1][map->x]);
+	vertex[1] = set_vertex_array_line(&map->graph_map[map->y + 1]
+			[map->x + 1], &map->graph_map[map->y][map->x + 1]);
+	vertex[3] = set_vertex_array_line(&map->graph_map[map->y + 1]
+			[map->x + 1], &map->graph_map[map->y + 1][map->x]);
 	vertex[4] = NULL;
 }
 void	display_selection(world_t *world)
@@ -60,5 +68,6 @@ void	display_selection(world_t *world)
 	else
 		display_selection_square(map);
 	for (unsigned int i = 0; map->vertex_mouse[i] != NULL; i++)
-		sfRenderWindow_drawVertexArray(window->window, map->vertex_mouse[i], NULL);
+		sfRenderWindow_drawVertexArray(window->window,
+						map->vertex_mouse[i], NULL);
 }
