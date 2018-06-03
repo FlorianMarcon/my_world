@@ -13,6 +13,8 @@ void	create_node(struct linked_list *tmp, void *dat)
 {
 	struct linked_list *new = malloc(sizeof(struct linked_list));
 
+	if (new == NULL)
+		return;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;

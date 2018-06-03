@@ -13,6 +13,8 @@ int	len_list(struct linked_list *tmp)
 {
 	int i = 1;
 
+	if (tmp == NULL)
+		return (0);
 	while (tmp->next != NULL) {
 		tmp = tmp->next;
 		i++;

@@ -6,7 +6,6 @@
 */
 
 #include <unistd.h>
-#include <stdio.h>
 
 int	my_str_isnum(char const *str)
 {
@@ -15,9 +14,10 @@ int	my_str_isnum(char const *str)
 	if (str == NULL)
 		return (0);
 	while (str[i] != '\0') {
-		if (str[i] < '0' || str[i] > '9')
+		if (str[i] < 48 || str[i] > 57)
 			return (0);
-		i++;
+		else
+			i++;
 	}
 	return (1);
 }

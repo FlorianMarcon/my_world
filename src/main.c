@@ -26,7 +26,6 @@ int	set_all_game(int ac, char **av, world_t *world)
 		if (create_world(world))
 			return (1);
 		loop_menu(world->window, world->map);
-//		create_map(world->map, world->map->width, world->map->height);
 	}
 	return (0);
 }

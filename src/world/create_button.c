@@ -74,10 +74,10 @@ void	create_button(world_t *world)
 	set_button(&world->button[2], (sfVector2f){0, 240}, &zoom_in);
 	set_helptextbox(&world->button[2], world->font, "Zoom in");
 	set_button_texture(&world->button[2], "./picture/plus_idle.png",
-		"./picture/plus_hover.png", "./picture/smaller_clicked.png");
+	"./picture/plus_hover.png", "./picture/validated.png");
 	set_button(&world->button[3], (sfVector2f){0, 360}, &zoom_out);
 	set_helptextbox(&world->button[3], world->font, "Zoom out");
 	set_button_texture(&world->button[3], "./picture/moins_idle.png",
-		"./picture/moins_hover.png", "./picture/smaller_clicked.png");
+		"./picture/moins_hover.png", "./picture/validated.png");
 	create_button_indexe(world);
 }
